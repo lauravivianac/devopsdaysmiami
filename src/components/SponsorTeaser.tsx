@@ -2,77 +2,91 @@
 import { useSponsorModal } from "@/context/SponsorModalContext";
 
 const BENEFITS = [
-  { title: "Brand visibility",      desc: "Logo and presence across all event channels, signage and digital assets." },
-  { title: "Speaking slots",        desc: "Workshop and session opportunities to showcase your engineering culture." },
-  { title: "Community access",      desc: "Direct engagement with senior DevOps, SRE and Platform Engineering teams." },
-  { title: "Americas reach",        desc: "Exposure across North America, Latin America and the global tech community." },
+  { title: "Brand visibility",   desc: "Logo and presence across all event channels, digital and physical." },
+  { title: "Speaking slots",     desc: "Workshop and session access to showcase your engineering culture." },
+  { title: "Community access",   desc: "Direct engagement with senior DevOps, SRE and Platform teams." },
+  { title: "Americas reach",     desc: "Exposure across North America and Latin America's tech ecosystem." },
 ];
 
-const TIERS = ["Community Partner","Startup","Gold","Platinum","Diamond"];
+const TIERS = [
+  { name: "Diamond", color: "#00b8d4" },
+  { name: "Platinum", color: "#94a3b8" },
+  { name: "Gold", color: "#f5c342" },
+  { name: "Startup", color: "#ff6b4a" },
+  { name: "Community Partner", color: "#64748b" },
+];
+
 const WA = `https://wa.me/573223507349?text=${encodeURIComponent("Hello DevOpsDays Miami team, I'm interested in sponsorship opportunities.")}`;
 
 export default function SponsorTeaser() {
   const { openModal } = useSponsorModal();
-  return (
-    <section id="sponsors" className="py-28" style={{ background: "#010e1e" }}>
-      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
 
-        <div className="flex items-center gap-3 mb-14">
-          <div className="h-px flex-1 bg-white/8" />
-          <span className="text-xs font-bold tracking-[0.18em] uppercase text-white/35">Sponsorship</span>
-          <div className="h-px flex-1 bg-white/8" />
+  return (
+    <section id="sponsors" className="py-32" style={{ background:"#050d18" }}>
+      <div className="max-w-7xl mx-auto px-6 sm:px-10">
+
+        <div className="flex items-center gap-4 mb-6">
+          <div className="section-rule" style={{ background:"linear-gradient(90deg, #f5c342, transparent)" }} />
+          <span className="label">Sponsorship</span>
         </div>
 
-        <div className="grid lg:grid-cols-[1fr_380px] gap-20 items-start">
+        <div className="grid lg:grid-cols-[1fr_360px] gap-20 items-start">
+
+          {/* Left */}
           <div>
-            <h2 className="text-4xl sm:text-5xl font-black text-white leading-tight mb-6">
+            <h2 className="text-4xl sm:text-5xl font-black leading-tight mb-6" style={{ color:"var(--text-1)" }}>
               Reach engineers who<br />
-              <span className="text-grad-coral">actually ship things.</span>
+              <span className="grad-coral">actually ship things.</span>
             </h2>
-            <p className="text-[#4a6880] text-lg leading-relaxed mb-12">
+            <p className="text-lg leading-relaxed mb-14" style={{ color:"var(--text-2)" }}>
               Connect your brand with a highly technical, influential and fast-growing
-              community of engineering and technology leaders across the Americas.
+              community of engineering leaders across the Americas.
             </p>
 
-            <div className="space-y-0 divide-y divide-white/6">
+            {/* Benefits */}
+            <div style={{ borderTop:"1px solid var(--border)" }}>
               {BENEFITS.map(b => (
-                <div key={b.title} className="flex items-start gap-5 py-5">
-                  <span className="text-[#38d9f0] text-xs font-bold mt-1 shrink-0">✦</span>
+                <div key={b.title} className="flex items-start gap-5 py-5"
+                  style={{ borderBottom:"1px solid var(--border)" }}>
+                  <div className="w-1 h-1 rounded-full mt-2.5 shrink-0" style={{ background:"#f5c342", boxShadow:"0 0 8px #f5c342" }} />
                   <div>
-                    <p className="text-white font-semibold text-sm mb-0.5">{b.title}</p>
-                    <p className="text-[#4a6880] text-sm leading-relaxed">{b.desc}</p>
+                    <p className="font-semibold text-sm mb-0.5" style={{ color:"var(--text-1)" }}>{b.title}</p>
+                    <p className="text-sm" style={{ color:"var(--text-3)" }}>{b.desc}</p>
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
+          {/* Sticky sidebar */}
           <div className="lg:sticky lg:top-24">
-            <div className="card-navy rounded-xl p-8">
-              <p className="text-[#38d9f0] text-xs font-bold tracking-widest uppercase mb-5">
-                Sponsorship tiers
-              </p>
-              <div className="space-y-2 mb-8">
-                {TIERS.map((t, i) => (
-                  <button key={t} onClick={openModal}
-                    className="w-full text-left px-4 py-3 rounded text-sm font-semibold transition-all hover:bg-white/6 hover:translate-x-1"
-                    style={{ color: i === 4 ? "#38d9f0" : i === 3 ? "#a8c8e0" : i === 2 ? "#f5c136" : "#6b8298" }}>
-                    {t} →
+            <div className="card p-7">
+              <p className="label mb-6" style={{ color:"#f5c342" }}>Select a tier</p>
+
+              <div className="space-y-1 mb-7">
+                {TIERS.map(t => (
+                  <button key={t.name} onClick={openModal}
+                    className="w-full text-left px-4 py-3 rounded-lg text-sm font-semibold transition-all hover:bg-white/5 hover:translate-x-1 flex items-center justify-between group"
+                    style={{ color: t.color }}>
+                    <span>{t.name}</span>
+                    <svg className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity"
+                      fill="none" viewBox="0 0 14 14">
+                      <path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
                   </button>
                 ))}
               </div>
 
-              <button onClick={openModal} className="btn-primary w-full text-sm py-3.5 mb-3">
+              <button onClick={openModal} className="btn btn-primary w-full mb-3" style={{ justifyContent:"center" }}>
                 Request sponsorship info →
               </button>
               <a href={WA} target="_blank" rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 w-full py-3 rounded text-sm font-semibold transition-all hover:bg-white/5"
-                style={{ border: "1px solid rgba(37,211,102,0.3)", color: "#25D366" }}>
+                className="btn btn-ghost w-full text-sm" style={{ justifyContent:"center", color:"#25D366", borderColor:"rgba(37,211,102,0.25)" }}>
                 <span>💬</span> Chat on WhatsApp
               </a>
-              <p className="text-[#2a4a60] text-xs text-center mt-4">
+              <p className="text-center text-xs mt-4" style={{ color:"var(--text-4)" }}>
                 or{" "}
-                <a href="mailto:hello@devopsdaysmiami.com" className="text-[#38d9f0] hover:underline">
+                <a href="mailto:hello@devopsdaysmiami.com" className="hover:underline" style={{ color:"var(--cyan)" }}>
                   hello@devopsdaysmiami.com
                 </a>
               </p>

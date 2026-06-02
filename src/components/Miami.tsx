@@ -1,50 +1,52 @@
-const POINTS = [
-  { stat: "3rd",   desc: "Largest tech ecosystem in the US by VC investment" },
-  { stat: "LATAM", desc: "Gateway to the fastest-growing engineering talent in the Americas" },
-  { stat: "50+",   desc: "Countries represented in Miami's tech community" },
-  { stat: "4x",    desc: "Growth in tech jobs over the last five years" },
+const DATA = [
+  { stat: "#3",     desc: "Largest tech ecosystem in the US" },
+  { stat: "50+",    desc: "Countries in Miami's engineering community" },
+  { stat: "4×",     desc: "Tech job growth over the last 5 years" },
+  { stat: "LATAM",  desc: "Gateway to the fastest-growing engineering talent" },
 ];
 
 export default function Miami() {
   return (
-    <section id="miami" className="py-28" style={{ background: "#010e1e" }}>
-      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
+    <section id="miami" className="py-32" style={{ background:"#050d18" }}>
+      <div className="max-w-7xl mx-auto px-6 sm:px-10">
 
-        <div className="flex items-center gap-3 mb-14">
-          <div className="h-px flex-1 bg-white/8" />
-          <span className="text-xs font-bold tracking-[0.18em] uppercase text-white/35">Why Miami</span>
-          <div className="h-px flex-1 bg-white/8" />
+        <div className="flex items-center gap-4 mb-6">
+          <div className="section-rule" />
+          <span className="label">Why Miami</span>
         </div>
 
-        {/* Bridge statement */}
+        {/* Headline + bridge statement */}
         <div className="max-w-3xl mb-20">
-          <h2 className="text-4xl sm:text-5xl lg:text-[54px] font-black text-white leading-tight mb-6">
+          <h2 className="text-4xl sm:text-5xl lg:text-[54px] font-black leading-tight mb-7" style={{ color:"var(--text-1)" }}>
             Miami is the bridge<br />
-            <span className="text-grad-coral">the tech world needed.</span>
+            <span className="grad-coral">the tech world needed.</span>
           </h2>
-          <p className="text-[#4a6880] text-xl leading-relaxed">
+          <p className="text-xl leading-relaxed" style={{ color:"var(--text-2)" }}>
             Miami connects North America, Latin America and the global engineering ecosystem.
-            It&apos;s not just a location — it&apos;s a strategic signal that the future of
-            software delivery is being built right here.
+            It&apos;s not just a location — it&apos;s a strategic signal that the future
+            of software delivery is being built right here.
           </p>
         </div>
 
-        {/* Stats grid */}
+        {/* Stat grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
-          {POINTS.map(p => (
-            <div key={p.stat} className="card-navy rounded-xl p-7">
-              <div className="text-3xl font-black text-[#38d9f0] mb-3">{p.stat}</div>
-              <p className="text-[#4a6880] text-sm leading-snug">{p.desc}</p>
+          {DATA.map(d => (
+            <div key={d.stat} className="card p-8">
+              <div className="font-black mb-3 grad-cyan" style={{ fontSize:36, lineHeight:1 }}>
+                {d.stat}
+              </div>
+              <p className="text-sm leading-snug" style={{ color:"var(--text-3)" }}>{d.desc}</p>
             </div>
           ))}
         </div>
 
         {/* CTA strip */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 pt-8 border-t border-white/8">
-          <p className="text-white/70 text-base flex-1">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 pt-10"
+          style={{ borderTop:"1px solid var(--border)" }}>
+          <p className="text-base" style={{ color:"var(--text-3)" }}>
             Ready to be part of the first DevOpsDays in Miami?
           </p>
-          <a href="#waitlist" className="btn-dark text-sm px-7 py-3 shrink-0">
+          <a href="#waitlist" className="btn btn-outline shrink-0">
             Join the waitlist →
           </a>
         </div>
