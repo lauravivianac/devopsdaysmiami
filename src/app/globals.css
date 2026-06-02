@@ -229,3 +229,8 @@ body {
 .fade-up-4  { animation: fadeUp 0.7s 0.55s ease both; }
 
 html { scroll-behavior: smooth; }
+
+/* ─── Hero background base ───────────────────────────────────────────────────── */
+.hero-bg {
+  background: #051525;
+}

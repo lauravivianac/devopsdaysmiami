@@ -12,6 +12,12 @@ const OPTIONS = [
   { value: "Keep me updated", label: "Keep me updated"     },
 ];
 
+const BENEFITS = [
+  "Early access to ticket launch",
+  "Speaker and CFP announcements",
+  "Community updates",
+];
+
 const field = [
   "w-full text-sm font-medium rounded-lg px-4 py-3.5 transition-all",
   "bg-white/[0.05] border text-white placeholder-white/25",
@@ -20,8 +26,9 @@ const field = [
 ].join(" ");
 
 export default function WaitlistForm() {
-  const [form, setForm] = useState<FormData>({ name:"", company:"", email:"", interest:"" });
-  const [status, setStatus] = useState<Status>("idle");
+  const [form, setForm]       = useState<FormData>({ name:"", company:"", email:"", interest:"" });
+  const [status, setStatus]   = useState<Status>("idle");
+  const [errDetail, setErrDetail] = useState<string>("");
 
   const set = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
     setForm(p => ({ ...p, [e.target.name]: e.target.value }));
@@ -29,14 +36,42 @@ export default function WaitlistForm() {
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("loading");
+    setErrDetail("");
+
+    let data: Record<string, unknown> = {};
     try {
-      const res  = await fetch("/api/waitlist", { method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(form) });
-      const data = await res.json();
-      if (res.status === 409 || data.error === "duplicate_email") { setStatus("duplicate"); return; }
-      if (!res.ok) throw new Error();
+      const res = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name:     form.name,
+          company:  form.company,
+          email:    form.email,
+          interest: form.interest,
+        }),
+      });
+
+      data = await res.json();
+      console.log("[waitlist] API response:", res.status, data);
+
+      if (res.status === 409 || data.error === "duplicate_email") {
+        setStatus("duplicate");
+        return;
+      }
+      if (!res.ok) {
+        const detail = typeof data.detail === "string" ? data.detail : (typeof data.error === "string" ? data.error : "unknown");
+        setErrDetail(detail);
+        setStatus("error");
+        return;
+      }
+
       setStatus("success");
       setForm({ name:"", company:"", email:"", interest:"" });
-    } catch { setStatus("error"); }
+    } catch (err) {
+      console.error("[waitlist] Fetch error:", err);
+      setErrDetail("Network error — check your connection.");
+      setStatus("error");
+    }
   };
 
   return (
@@ -50,7 +85,7 @@ export default function WaitlistForm() {
 
         <div className="grid lg:grid-cols-[1fr_480px] gap-20 items-start">
 
-          {/* Left — editorial */}
+          {/* Left */}
           <div>
             <h2 className="text-4xl sm:text-5xl font-black leading-tight mb-7" style={{ color:"var(--text-1)" }}>
               Be part of the<br />
@@ -61,12 +96,7 @@ export default function WaitlistForm() {
               takes shape — tickets, speakers, CFP and more.
             </p>
             <ul className="space-y-3.5">
-              {[
-                "Early access to ticket launch",
-                "Speaker and CFP announcements",
-                "Sponsorship opportunities",
-                "Community updates",
-              ].map(l => (
+              {BENEFITS.map(l => (
                 <li key={l} className="flex items-center gap-3 text-sm" style={{ color:"var(--text-3)" }}>
                   <span style={{ color:"#00b8d4", fontSize:10 }}>✦</span>
                   {l}
@@ -118,11 +148,18 @@ export default function WaitlistForm() {
                       style={{background:"rgba(0,184,212,0.08)",color:"#00b8d4",border:"1px solid rgba(0,184,212,0.2)"}}>
                       This email is already on the waitlist.
                     </p>}
+
                   {status === "error" &&
-                    <p className="text-xs text-center" style={{color:"#ff6b4a"}}>
-                      Something went wrong. Please try again or contact{" "}
-                      <a href="mailto:hello@devopsdaysmiami.com" className="underline">hello@devopsdaysmiami.com</a>
-                    </p>}
+                    <div className="text-xs text-center space-y-1">
+                      <p style={{color:"#ff6b4a"}}>
+                        Something went wrong. Please try again or contact{" "}
+                        <a href="mailto:hello@devopsdaysmiami.com" className="underline">hello@devopsdaysmiami.com</a>
+                      </p>
+                      {errDetail &&
+                        <p className="font-mono px-3 py-1.5 rounded" style={{background:"rgba(255,107,74,0.08)",color:"rgba(255,107,74,0.80)"}}>
+                          {errDetail}
+                        </p>}
+                    </div>}
 
                   <button type="submit" disabled={status==="loading"}
                     className="btn btn-primary w-full mt-2 disabled:opacity-40 disabled:cursor-not-allowed"
