@@ -1,47 +1,56 @@
 const TOPICS = [
-  { label: "Platform Engineering",        icon: "🏗️", accent: "#00cfe4" },
-  { label: "Cloud Native & Kubernetes",   icon: "☁️", accent: "#0558a0" },
-  { label: "DevOps Culture",              icon: "🔄", accent: "#f0513e" },
-  { label: "SRE & Observability",         icon: "📊", accent: "#00cfe4" },
-  { label: "AI for Software Delivery",    icon: "🤖", accent: "#f5c340" },
-  { label: "FinOps & Cloud Optimization", icon: "💡", accent: "#f4884a" },
-  { label: "Security & Governance",       icon: "🔐", accent: "#f0513e" },
-  { label: "Developer Experience",        icon: "⚡", accent: "#00cfe4" },
+  { label: "Platform Engineering",        num: "01" },
+  { label: "Cloud Native & Kubernetes",   num: "02" },
+  { label: "DevOps Culture",              num: "03" },
+  { label: "SRE & Observability",         num: "04" },
+  { label: "AI for Software Delivery",    num: "05" },
+  { label: "FinOps & Cloud Optimization", num: "06" },
+  { label: "Security & Governance",       num: "07" },
+  { label: "Developer Experience",        num: "08" },
 ];
 
 export default function Topics() {
   return (
-    <section id="topics" className="py-28 bg-[#fdf8f3] relative overflow-hidden">
-      <div className="absolute inset-0 dot-grid-light opacity-50"/>
-      {/* Aqua tint top */}
-      <div className="absolute top-0 inset-x-0 h-1" style={{
-        background: "linear-gradient(90deg, transparent, #00cfe4 50%, transparent)"
-      }}/>
-      {/* Subtle warm glow */}
-      <div className="absolute right-0 top-0 w-96 h-96 pointer-events-none"
-        style={{ background: "radial-gradient(ellipse at 100% 0%, rgba(245,195,64,0.12) 0%, transparent 65%)" }}/>
+    <section id="topics" className="bg-[#f8f4ef] py-28">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
 
-      <div className="relative max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
-        <div className="text-center mb-16">
-          <span className="inline-block text-xs font-bold tracking-widest uppercase text-[#f5c340] bg-[#f5c340]/10 border border-[#f5c340]/20 px-3 py-1 rounded-full mb-5">
-            Topics
-          </span>
-          <h2 className="text-4xl sm:text-5xl font-black text-[#020e1c] leading-tight">
-            The conversations{" "}
-            <span className="text-grad-aqua">that matter now</span>
-          </h2>
+        <div className="flex items-center gap-3 mb-14">
+          <div className="h-px flex-1 bg-[#e0dbd4]" />
+          <span className="text-xs font-bold tracking-[0.18em] uppercase text-[#8a9aaa]">Topics</span>
+          <div className="h-px flex-1 bg-[#e0dbd4]" />
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {TOPICS.map(t => (
-            <div key={t.label} className="card-light rounded-2xl p-6 group cursor-default">
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center text-xl mb-4 transition-transform duration-300 group-hover:scale-110"
-                style={{ background: `${t.accent}12`, border: `1px solid ${t.accent}25` }}>
-                {t.icon}
+        <div className="grid lg:grid-cols-[380px_1fr] gap-16 items-start">
+          <div>
+            <h2 className="text-4xl sm:text-5xl font-black text-[#010e1e] leading-tight mb-6">
+              The conversations<br />
+              <span className="text-grad-aqua">that matter now.</span>
+            </h2>
+            <p className="text-[#6b8298] leading-relaxed">
+              Sessions, ignites and open spaces driven by practitioners —
+              for practitioners. No sales pitches.
+            </p>
+          </div>
+
+          <div className="divide-y divide-[#e0dbd4]">
+            {TOPICS.map(t => (
+              <div key={t.label}
+                className="flex items-center justify-between py-4 group cursor-default">
+                <div className="flex items-center gap-5">
+                  <span className="text-xs font-bold text-[#38d9f0] tabular-nums w-6 shrink-0">
+                    {t.num}
+                  </span>
+                  <span className="text-[#1a2a38] font-semibold text-base group-hover:text-[#010e1e] transition-colors">
+                    {t.label}
+                  </span>
+                </div>
+                <svg className="w-4 h-4 text-[#c8d4dc] group-hover:text-[#38d9f0] group-hover:translate-x-1 transition-all"
+                  fill="none" viewBox="0 0 16 16">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
               </div>
-              <p className="text-[#1a2a38] font-semibold text-sm leading-snug">{t.label}</p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>

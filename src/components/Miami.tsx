@@ -1,69 +1,52 @@
-const HIGHLIGHTS = [
-  { label: "Booming tech scene",    detail: "One of the fastest-growing startup ecosystems in the US." },
-  { label: "Latin America gateway", detail: "Strategic bridge to the fastest-growing tech talent in LATAM." },
-  { label: "Global connectivity",   detail: "International hub connecting North America, Europe and the world." },
-  { label: "Engineering talent",    detail: "A growing base of senior engineers, CTOs and tech founders." },
+const POINTS = [
+  { stat: "3rd",   desc: "Largest tech ecosystem in the US by VC investment" },
+  { stat: "LATAM", desc: "Gateway to the fastest-growing engineering talent in the Americas" },
+  { stat: "50+",   desc: "Countries represented in Miami's tech community" },
+  { stat: "4x",    desc: "Growth in tech jobs over the last five years" },
 ];
 
 export default function Miami() {
   return (
-    <section id="miami" className="py-28 relative overflow-hidden" style={{
-      background: "linear-gradient(160deg, #021428 0%, #031d38 50%, #042548 100%)"
-    }}>
-      {/* Sunset glow right */}
-      <div className="absolute right-0 bottom-0 w-[600px] h-[500px] pointer-events-none"
-        style={{ background: "radial-gradient(ellipse at 90% 85%, rgba(240,81,62,0.15) 0%, rgba(244,136,74,0.08) 40%, transparent 65%)" }}/>
-      {/* Aqua left */}
-      <div className="absolute left-0 top-0 w-[400px] h-[400px] pointer-events-none"
-        style={{ background: "radial-gradient(ellipse at 10% 20%, rgba(0,207,228,0.1) 0%, transparent 65%)" }}/>
-
+    <section id="miami" className="py-28" style={{ background: "#010e1e" }}>
       <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
 
-        {/* Bridge callout */}
-        <div className="card-glass rounded-3xl p-8 sm:p-12 mb-20 max-w-3xl mx-auto text-center"
-          style={{ borderColor: "rgba(0,207,228,0.2)" }}>
-          <span className="inline-block text-xs font-bold tracking-widest uppercase text-[#f0513e] bg-[#f0513e]/10 px-3 py-1 rounded-full mb-4">
-            Miami as the bridge
-          </span>
-          <p className="text-white text-lg sm:text-xl leading-relaxed font-medium">
-            Miami connects North America, Latin America and the global
-            engineering ecosystem — making it the perfect home for a
-            community-driven DevOps event.
+        <div className="flex items-center gap-3 mb-14">
+          <div className="h-px flex-1 bg-white/8" />
+          <span className="text-xs font-bold tracking-[0.18em] uppercase text-white/35">Why Miami</span>
+          <div className="h-px flex-1 bg-white/8" />
+        </div>
+
+        {/* Bridge statement */}
+        <div className="max-w-3xl mb-20">
+          <h2 className="text-4xl sm:text-5xl lg:text-[54px] font-black text-white leading-tight mb-6">
+            Miami is the bridge<br />
+            <span className="text-grad-coral">the tech world needed.</span>
+          </h2>
+          <p className="text-[#4a6880] text-xl leading-relaxed">
+            Miami connects North America, Latin America and the global engineering ecosystem.
+            It&apos;s not just a location — it&apos;s a strategic signal that the future of
+            software delivery is being built right here.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <span className="inline-block text-xs font-bold tracking-widest uppercase text-[#f0513e] bg-[#f0513e]/10 px-3 py-1 rounded-full mb-5">
-              Why Miami
-            </span>
-            <h2 className="text-4xl sm:text-5xl font-black text-white mb-6 leading-tight">
-              More than a city.{" "}
-              <span className="text-grad-warm">A crossroads.</span>
-            </h2>
-            <p className="text-slate-300 text-lg leading-relaxed mb-8">
-              Miami is becoming a strategic bridge between North America,
-              Latin America and the global technology ecosystem. This is not
-              just a local event — it&apos;s a regional signal that the future
-              of engineering is being built here too.
-            </p>
-            <a href="#waitlist" className="btn-cta inline-flex px-8 py-4 text-base">
-              Be part of it →
-            </a>
-          </div>
+        {/* Stats grid */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
+          {POINTS.map(p => (
+            <div key={p.stat} className="card-navy rounded-xl p-7">
+              <div className="text-3xl font-black text-[#38d9f0] mb-3">{p.stat}</div>
+              <p className="text-[#4a6880] text-sm leading-snug">{p.desc}</p>
+            </div>
+          ))}
+        </div>
 
-          <div className="space-y-3">
-            {HIGHLIGHTS.map(h => (
-              <div key={h.label} className="card-dark rounded-2xl p-5 flex items-start gap-4">
-                <span className="w-2 h-2 rounded-full bg-[#f0513e] mt-1.5 shrink-0"
-                  style={{ boxShadow: "0 0 8px rgba(240,81,62,0.7)" }}/>
-                <div>
-                  <p className="text-white font-semibold text-sm mb-0.5">{h.label}</p>
-                  <p className="text-slate-400 text-sm">{h.detail}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+        {/* CTA strip */}
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 pt-8 border-t border-white/8">
+          <p className="text-white/70 text-base flex-1">
+            Ready to be part of the first DevOpsDays in Miami?
+          </p>
+          <a href="#waitlist" className="btn-dark text-sm px-7 py-3 shrink-0">
+            Join the waitlist →
+          </a>
         </div>
       </div>
     </section>

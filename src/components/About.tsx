@@ -1,49 +1,47 @@
 const STATS = [
-  { value: "2-day",  label: "Community Event",  color: "#00cfe4" },
-  { value: "Open",   label: "Call for Papers",   color: "#f0513e" },
-  { value: "Global", label: "Network",            color: "#0558a0" },
-  { value: "Free",   label: "Community Spirit",  color: "#f5c340" },
+  { value: "2",      unit: "days",  label: "of talks, ignites & open spaces" },
+  { value: "Open",   unit: "CFP",   label: "Practitioner-led sessions"        },
+  { value: "LATAM",  unit: "+ US",  label: "Regional community reach"         },
+  { value: "100%",   unit: "free",  label: "Community spirit"                 },
 ];
 
 export default function About() {
   return (
-    <section id="about" className="py-28 bg-[#fdf8f3] relative overflow-hidden">
-      {/* Decorative dot grid */}
-      <div className="absolute inset-0 dot-grid-light opacity-60"/>
-      {/* Top warm gradient edge */}
-      <div className="absolute top-0 inset-x-0 h-1" style={{
-        background: "linear-gradient(90deg, transparent, #00cfe4 40%, #f0513e 70%, transparent)"
-      }}/>
+    <section id="about" className="bg-[#f8f4ef] py-28">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
 
-      <div className="relative max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        {/* Section label */}
+        <div className="flex items-center gap-3 mb-14">
+          <div className="h-px flex-1 bg-[#e0dbd4]" />
+          <span className="text-xs font-bold tracking-[0.18em] uppercase text-[#8a9aaa]">About the event</span>
+          <div className="h-px flex-1 bg-[#e0dbd4]" />
+        </div>
 
+        <div className="grid lg:grid-cols-[1fr_420px] gap-16 items-start">
           <div>
-            <span className="inline-block text-xs font-bold tracking-widest uppercase text-[#0558a0] bg-[#0558a0]/8 px-3 py-1 rounded-full mb-5">
-              About the event
-            </span>
-            <h2 className="text-4xl sm:text-5xl font-black text-[#020e1c] mb-6 leading-tight">
-              Engineering community.{" "}
+            <h2 className="text-4xl sm:text-5xl lg:text-[52px] font-black text-[#010e1e] leading-tight mb-7">
+              Engineering community.<br />
               <span className="text-grad-aqua">Real conversations.</span>
             </h2>
-            <p className="text-slate-600 text-lg leading-relaxed mb-5">
-              DevOpsDays Miami will bring together engineers, platform teams,
-              cloud leaders, SREs, DevOps practitioners, architects, startups,
-              enterprises and technology partners to explore the future of
-              software delivery.
+            <p className="text-[#3a5068] text-lg leading-relaxed mb-5">
+              DevOpsDays Miami will bring together engineers, platform teams, cloud leaders,
+              SREs, DevOps practitioners, architects, startups, enterprises and technology
+              partners to explore the future of software delivery.
             </p>
-            <p className="text-slate-400 text-base leading-relaxed">
+            <p className="text-[#6b8298] text-base leading-relaxed">
               Rooted in the global DevOpsDays tradition — open, community-led,
               practitioner-focused. Not a vendor conference. A space where real
-              teams share real stories.
+              teams share real stories, real failures, and real breakthroughs.
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-3">
             {STATS.map(s => (
-              <div key={s.label} className="card-light rounded-2xl p-7">
-                <div className="text-3xl font-black mb-1.5" style={{ color: s.color }}>{s.value}</div>
-                <div className="text-slate-400 text-sm font-medium">{s.label}</div>
+              <div key={s.label} className="card-white rounded-xl p-6">
+                <div className="text-2xl font-black text-[#010e1e] leading-none">
+                  {s.value}<span className="text-[#38d9f0] ml-1 text-lg">{s.unit}</span>
+                </div>
+                <div className="text-[#6b8298] text-xs mt-2 leading-snug">{s.label}</div>
               </div>
             ))}
           </div>
