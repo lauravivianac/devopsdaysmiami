@@ -10,20 +10,21 @@ const LINKS = [
 
 export default function Footer() {
   return (
-    <footer style={{ background:"#050d18", borderTop:"1px solid rgba(255,255,255,0.05)" }}>
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 py-16">
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-10 mb-14">
+    <footer style={{ background: "#040F22", borderTop: "1px solid rgba(37,208,230,0.10)" }}>
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 py-14">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-10 mb-12">
 
           {/* Brand */}
-          <a href="#" className="flex items-center gap-3.5 group">
-            <div className="w-9 h-9 rounded-xl bg-white flex items-center justify-center shadow-md overflow-hidden flex-shrink-0">
-              <Image src="/logo.png" alt="DevOpsDays Miami" width={30} height={30} className="object-contain"/>
+          <a href="#" className="flex items-center gap-3.5">
+            <div className="rounded-xl overflow-hidden flex items-center justify-center flex-shrink-0"
+              style={{ width: 38, height: 38, background: "rgba(255,255,255,0.92)", boxShadow: "0 0 16px rgba(37,208,230,0.20)" }}>
+              <Image src="/logo.png" alt="DevOpsDays Miami" width={32} height={32} className="object-contain"/>
             </div>
             <div>
-              <p className="font-black text-sm" style={{color:"#00b8d4"}}>
-                DevOpsDays <span style={{color:"#f5c342"}}>Miami</span>
+              <p className="font-black text-sm" style={{ color: "#25D0E6" }}>
+                DevOpsDays <span style={{ color: "#FF8A6B" }}>Miami</span>
               </p>
-              <p className="text-xs mt-0.5" style={{color:"var(--text-4)"}}>
+              <p className="text-xs mt-0.5" style={{ color: "rgba(237,242,247,0.25)" }}>
                 Community-driven · Engineering-focused · Coming soon
               </p>
             </div>
@@ -34,7 +35,7 @@ export default function Footer() {
             {LINKS.map(({l,h}) => (
               <a key={l} href={h}
                 className="px-3.5 py-2 text-sm rounded-lg transition-colors hover:text-white/80"
-                style={{color:"var(--text-3)"}}>
+                style={{ color: "rgba(237,242,247,0.30)" }}>
                 {l}
               </a>
             ))}
@@ -42,11 +43,11 @@ export default function Footer() {
         </div>
 
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-8"
-          style={{borderTop:"1px solid rgba(255,255,255,0.04)"}}>
-          <p className="text-xs" style={{color:"var(--text-4)"}}>
+          style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+          <p className="text-xs" style={{ color: "rgba(237,242,247,0.20)" }}>
             © {new Date().getFullYear()} DevOpsDays Miami.
           </p>
-          <p className="text-xs" style={{color:"var(--text-4)"}}>
+          <p className="text-xs" style={{ color: "rgba(237,242,247,0.20)" }}>
             DevOpsDays is a trademark of the DevOpsDays community.
           </p>
         </div>

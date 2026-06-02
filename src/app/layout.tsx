@@ -47,7 +47,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.variable} antialiased`} style={{ background:"#050d18" }}>
+      <body className={`${inter.variable} antialiased`} style={{ background:"#ffffff" }}>
         <SponsorModalProvider>
           {children}
           <SponsorModal />

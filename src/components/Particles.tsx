@@ -4,7 +4,8 @@ import { useEffect, useState } from "react";
 
 type P = { id: number; x: number; y: number; size: number; dur: number; delay: number; op: number; color: string };
 
-const COLORS = ["#00b8d4", "#00b8d4", "#00b8d4", "#ff6b4a", "#f5c342"];
+// Warm Miami palette — visible on both bright beach and dark navy backgrounds
+const COLORS = ["#25D0E6", "#25D0E6", "#FFA84D", "#FF8A6B", "#ffffff"];
 
 export default function Particles({ count = 55 }: { count?: number }) {
   const [particles, setParticles] = useState<P[]>([]);
