@@ -1,3 +1,7 @@
+"use client";
+
+import { useSponsorModal } from "@/context/SponsorModalContext";
+
 const tracks = [
   {
     icon: "🎟️",
@@ -5,6 +9,7 @@ const tracks = [
     description: "Get early access to tickets, speaker lineup and session announcements.",
     cta: "Notify me",
     bg: "linear-gradient(135deg,#00D5E8,#0067B1)",
+    action: "waitlist" as const,
     href: "#waitlist",
   },
   {
@@ -13,7 +18,8 @@ const tracks = [
     description: "Connect your brand with engineers and tech leaders across the Americas.",
     cta: "Request sponsor info",
     bg: "linear-gradient(135deg,#FF6F61,#c0392b)",
-    href: "#sponsors",
+    action: "sponsor" as const,
+    href: "#",
   },
   {
     icon: "🎤",
@@ -21,11 +27,14 @@ const tracks = [
     description: "Share your story, project or lessons learned with a practitioner audience.",
     cta: "Submit interest",
     bg: "linear-gradient(135deg,#FFD18A,#FF6F61)",
+    action: "waitlist" as const,
     href: "#waitlist",
   },
 ];
 
 export default function CallForInterest() {
+  const { openModal } = useSponsorModal();
+
   return (
     <section className="py-24 bg-[#FFF7EA] relative overflow-hidden">
       <div className="absolute inset-0 opacity-[0.03]"
@@ -54,13 +63,23 @@ export default function CallForInterest() {
               </div>
               <h3 className="text-[#031B2E] font-black text-xl mb-3">{t.title}</h3>
               <p className="text-[#031B2E]/60 text-sm leading-relaxed mb-8 flex-1">{t.description}</p>
-              <a
-                href={t.href}
-                className="text-white font-bold text-sm px-6 py-3 rounded-full text-center hover:opacity-90 transition-all hover:-translate-y-0.5"
-                style={{ background: t.bg }}
-              >
-                {t.cta} →
-              </a>
+              {t.action === "sponsor" ? (
+                <button
+                  onClick={openModal}
+                  className="text-white font-bold text-sm px-6 py-3 rounded-full text-center hover:opacity-90 transition-all hover:-translate-y-0.5"
+                  style={{ background: t.bg }}
+                >
+                  {t.cta} →
+                </button>
+              ) : (
+                <a
+                  href={t.href}
+                  className="text-white font-bold text-sm px-6 py-3 rounded-full text-center hover:opacity-90 transition-all hover:-translate-y-0.5"
+                  style={{ background: t.bg }}
+                >
+                  {t.cta} →
+                </a>
+              )}
             </div>
           ))}
         </div>

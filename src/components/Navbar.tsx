@@ -2,9 +2,11 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import { useSponsorModal } from "@/context/SponsorModalContext";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const { openModal } = useSponsorModal();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -51,7 +53,6 @@ export default function Navbar() {
               ["About", "#about"],
               ["Topics", "#topics"],
               ["Miami", "#miami"],
-              ["Sponsors", "#sponsors"],
             ].map(([label, href]) => (
               <a
                 key={label}
@@ -61,6 +62,12 @@ export default function Navbar() {
                 {label}
               </a>
             ))}
+            <button
+              onClick={openModal}
+              className="text-sm text-[#FFD18A] hover:text-white transition-colors font-medium"
+            >
+              Sponsors
+            </button>
           </div>
 
           <a

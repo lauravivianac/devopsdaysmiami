@@ -1,4 +1,6 @@
+"use client";
 import Image from "next/image";
+import { useSponsorModal } from "@/context/SponsorModalContext";
 
 const badges = [
   "Platform Engineering",
@@ -11,6 +13,7 @@ const badges = [
 ];
 
 export default function Hero() {
+  const { openModal } = useSponsorModal();
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden gradient-hero">
 
@@ -133,12 +136,12 @@ export default function Hero() {
           >
             Join the waitlist →
           </a>
-          <a
-            href="#sponsors"
+          <button
+            onClick={openModal}
             className="btn-outline-aqua font-semibold text-base px-9 py-4 rounded-full w-full sm:w-auto"
           >
             Become a sponsor
-          </a>
+          </button>
         </div>
 
         {/* Topic badges */}

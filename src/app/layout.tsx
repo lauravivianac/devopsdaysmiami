@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { SponsorModalProvider } from "@/context/SponsorModalContext";
+import SponsorModal from "@/components/SponsorModal";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -36,7 +38,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.variable} antialiased`}>{children}</body>
+      <body className={`${inter.variable} antialiased`}>
+        <SponsorModalProvider>
+          {children}
+          <SponsorModal />
+        </SponsorModalProvider>
+      </body>
     </html>
   );
 }
