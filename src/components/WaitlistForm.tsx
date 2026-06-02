@@ -83,7 +83,7 @@ export default function WaitlistForm() {
                     style={{ background:"linear-gradient(135deg,#00b8d4,#ff6b4a)" }}>✓</div>
                   <h3 className="font-black text-xl mb-2" style={{ color:"var(--text-1)" }}>You&apos;re on the list!</h3>
                   <p className="text-sm" style={{ color:"var(--text-3)" }}>
-                    We&apos;ll keep you posted as DevOpsDays Miami takes shape.
+                    We&apos;ll keep you posted as DevOpsDays Miami takes shape. Welcome to the community.
                   </p>
                 </div>
               : <form onSubmit={submit} className="card p-8 space-y-3">
@@ -116,11 +116,11 @@ export default function WaitlistForm() {
                   {status === "duplicate" &&
                     <p className="text-xs text-center py-2.5 px-4 rounded-lg"
                       style={{background:"rgba(0,184,212,0.08)",color:"#00b8d4",border:"1px solid rgba(0,184,212,0.2)"}}>
-                      This email is already on the waitlist. 🎉
+                      This email is already on the waitlist.
                     </p>}
                   {status === "error" &&
                     <p className="text-xs text-center" style={{color:"#ff6b4a"}}>
-                      Something went wrong. Email{" "}
+                      Something went wrong. Please try again or contact{" "}
                       <a href="mailto:hello@devopsdaysmiami.com" className="underline">hello@devopsdaysmiami.com</a>
                     </p>}
 

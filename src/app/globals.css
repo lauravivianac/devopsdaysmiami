@@ -146,7 +146,7 @@ body {
   border-radius: 1px;
 }
 
-/* ─── Stripe aurora blobs ────────────────────────────────────────────────────── */
+/* ─── Aurora blobs — generic ─────────────────────────────────────────────────── */
 .aurora-cyan {
   position: absolute;
   border-radius: 50%;
@@ -165,6 +165,32 @@ body {
   position: absolute;
   border-radius: 50%;
   background: radial-gradient(ellipse, rgba(120,80,220,0.10) 0%, transparent 65%);
+  filter: blur(1px);
+  pointer-events: none;
+}
+
+/* ─── Aurora blobs — warm Miami coastal palette ──────────────────────────────── */
+/* Sunset coral-orange glow */
+.aurora-sunset {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(255,130,60,0.22) 0%, rgba(255,80,40,0.08) 45%, transparent 70%);
+  filter: blur(2px);
+  pointer-events: none;
+}
+/* Deep ocean blue glow */
+.aurora-ocean {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(0,100,200,0.20) 0%, rgba(0,60,140,0.08) 45%, transparent 70%);
+  filter: blur(2px);
+  pointer-events: none;
+}
+/* Aqua / turquoise glow */
+.aurora-aqua {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(0,210,230,0.13) 0%, transparent 65%);
   filter: blur(1px);
   pointer-events: none;
 }

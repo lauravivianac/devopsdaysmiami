@@ -1,25 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 
-// ─── EMAIL PROVIDER CONFIGURATION ───────────────────────────────────────────
-//
-// This route supports three providers. Uncomment the one you want to use
-// and add the corresponding environment variable to your Vercel project:
-//
-//   Provider       Env var needed
-//   ──────────────────────────────────────────────────────────────────────────
-//   Resend         RESEND_API_KEY       → https://resend.com/api-keys
-//   SendGrid       SENDGRID_API_KEY     → https://app.sendgrid.com/settings/api_keys
-//   Brevo          BREVO_API_KEY        → https://app.brevo.com/settings/keys/api
-//
-// Set the variable in Vercel → Project Settings → Environment Variables.
-// The FROM address must be a verified domain on your chosen provider.
-//
-// RECIPIENTS — emails go to:
 const RECIPIENTS = ["hello@devopsdaysmiami.com", "miami@devopsdays.org"];
-const FROM_EMAIL = "noreply@devopsdaysmiami.com"; // change to your verified sender
+// Must be a verified sender in your Brevo account.
+// Go to Brevo → Senders & IPs → Verify a domain or email address.
+const FROM_EMAIL = "hello@devopsdaysmiami.com";
 const FROM_NAME  = "DevOpsDays Miami Website";
-
-// ────────────────────────────────────────────────────────────────────────────
 
 type SponsorPayload = {
   firstName: string;
@@ -27,9 +12,9 @@ type SponsorPayload = {
   company: string;
   jobTitle: string;
   email: string;
-  phone: string;
+  phone?: string;
   interest: string;
-  message: string;
+  message?: string;
 };
 
 function buildHtml(d: SponsorPayload) {
@@ -63,27 +48,16 @@ function buildHtml(d: SponsorPayload) {
 </div>`;
 }
 
-async function sendViaResend(data: SponsorPayload) {
-  // npm install resend  →  add to package.json
-  // import { Resend } from "resend";
-  // const resend = new Resend(process.env.RESEND_API_KEY);
-  // return resend.emails.send({ from: `${FROM_NAME} <${FROM_EMAIL}>`, to: RECIPIENTS, ... });
-  throw new Error("Resend not configured — see comments in route.ts");
-}
-
-async function sendViaSendGrid(data: SponsorPayload) {
-  // npm install @sendgrid/mail
-  // import sgMail from "@sendgrid/mail";
-  // sgMail.setApiKey(process.env.SENDGRID_API_KEY!);
-  // return sgMail.sendMultiple({ to: RECIPIENTS, from: { email: FROM_EMAIL, name: FROM_NAME }, ... });
-  throw new Error("SendGrid not configured — see comments in route.ts");
-}
-
 async function sendViaBrevo(data: SponsorPayload) {
+  const apiKey = process.env.BREVO_API_KEY;
+  if (!apiKey) {
+    throw new Error("BREVO_API_KEY is not set in environment variables");
+  }
+
   const res = await fetch("https://api.brevo.com/v3/smtp/email", {
     method: "POST",
     headers: {
-      "api-key": process.env.BREVO_API_KEY!,
+      "api-key": apiKey,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
@@ -94,29 +68,47 @@ async function sendViaBrevo(data: SponsorPayload) {
       htmlContent: buildHtml(data),
     }),
   });
-  if (!res.ok) throw new Error(`Brevo error: ${res.status}`);
+
+  if (!res.ok) {
+    const body = await res.text();
+    throw new Error(`Brevo HTTP ${res.status}: ${body}`);
+  }
 }
 
 export async function POST(req: NextRequest) {
-  try {
-    const data: SponsorPayload = await req.json();
+  // Debug: env presence
+  console.log("[sponsor] ENV — BREVO_API_KEY:", !!process.env.BREVO_API_KEY);
 
-    // Basic validation
-    if (!data.firstName || !data.lastName || !data.email || !data.company || !data.interest) {
-      return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+  try {
+    const data = await req.json() as SponsorPayload;
+    console.log("[sponsor] Received keys:", Object.keys(data));
+
+    // Validate required fields
+    const missing: string[] = [];
+    if (!data.firstName?.trim()) missing.push("firstName");
+    if (!data.lastName?.trim())  missing.push("lastName");
+    if (!data.company?.trim())   missing.push("company");
+    if (!data.jobTitle?.trim())  missing.push("jobTitle");
+    if (!data.email?.trim())     missing.push("email");
+    if (!data.interest?.trim())  missing.push("interest");
+
+    if (missing.length > 0) {
+      return NextResponse.json({ error: "Missing required fields", fields: missing }, { status: 400 });
     }
 
-    // ── SELECT YOUR PROVIDER ────────────────────────────────────────────────
-    // Uncomment ONE of the lines below to activate that provider:
-    //
-    // await sendViaResend(data);
-    // await sendViaSendGrid(data);
-    await sendViaBrevo(data);   // ← default: uses BREVO_API_KEY env var
-    // ───────────────────────────────────────────────────────────────────────
+    if (!process.env.BREVO_API_KEY) {
+      console.error("[sponsor] BREVO_API_KEY is not configured — cannot send email");
+      return NextResponse.json(
+        { error: "email_not_configured", message: "Email service is not configured. Please contact hello@devopsdaysmiami.com directly." },
+        { status: 503 }
+      );
+    }
 
+    await sendViaBrevo(data);
+    console.log("[sponsor] Email sent OK to:", RECIPIENTS);
     return NextResponse.json({ ok: true });
   } catch (err) {
-    console.error("Sponsor email error:", err);
+    console.error("[sponsor] Error:", err instanceof Error ? err.message : err);
     return NextResponse.json({ error: "Failed to send" }, { status: 500 });
   }
 }

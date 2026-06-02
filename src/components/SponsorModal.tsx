@@ -14,7 +14,7 @@ type FormData = {
   message: string;
 };
 
-type Status = "idle" | "loading" | "success" | "error";
+type Status = "idle" | "loading" | "success" | "error" | "unconfigured";
 
 const INTERESTS = [
   "Community Partner",
@@ -84,6 +84,7 @@ export default function SponsorModal() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
+      if (res.status === 503) { setStatus("unconfigured"); return; }
       if (!res.ok) throw new Error("server error");
       setStatus("success");
     } catch {
@@ -213,7 +214,14 @@ export default function SponsorModal() {
 
                 {status === "error" && (
                   <p className="text-[#FF6F61] text-sm text-center">
-                    Something went wrong. Please try again or email us directly.
+                    Something went wrong. Please try again or contact{" "}
+                    <a href="mailto:hello@devopsdaysmiami.com" className="underline">hello@devopsdaysmiami.com</a>
+                  </p>
+                )}
+                {status === "unconfigured" && (
+                  <p className="text-[#FF6F61] text-sm text-center">
+                    Email service is not configured yet. Please contact us directly at{" "}
+                    <a href="mailto:hello@devopsdaysmiami.com" className="underline">hello@devopsdaysmiami.com</a>
                   </p>
                 )}
 
