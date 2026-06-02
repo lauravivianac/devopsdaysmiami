@@ -1,8 +1,8 @@
 const STATS = [
-  { value: "2",      suffix: " days",  sub: "talks · ignites · open spaces" },
+  { value: "1",      suffix: " day",   sub: "talks · ignites · open spaces" },
   { value: "Open",   suffix: " CFP",   sub: "practitioner-led sessions"      },
   { value: "LATAM",  suffix: " + US",  sub: "cross-regional community"       },
-  { value: "100%",   suffix: "",        sub: "community spirit, zero fluff"  },
+  { value: "100%",   suffix: "",        sub: "community-driven, zero fluff"  },
 ];
 
 export default function About() {

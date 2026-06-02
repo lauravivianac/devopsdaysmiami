@@ -14,6 +14,15 @@ export const metadata: Metadata = {
   title: "DevOpsDays Miami — Coming Soon",
   description:
     "DevOpsDays is coming to Miami. A community-driven tech event on DevOps, Platform Engineering, Cloud, SRE, AI for Engineering, FinOps and Security. Join the waitlist.",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png",    type: "image/png", sizes: "512x512" },
+    ],
+    apple: [
+      { url: "/apple-icon.png", type: "image/png" },
+    ],
+  },
   openGraph: {
     title: "DevOpsDays Miami — Coming Soon",
     description:
