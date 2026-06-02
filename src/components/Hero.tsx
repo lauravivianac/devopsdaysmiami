@@ -40,11 +40,13 @@ export default function Hero() {
           <span className="gradient-text-miami">coming to Miami</span>
         </h1>
 
-        <p className="text-lg sm:text-xl text-slate-200 max-w-2xl mx-auto mb-4 leading-relaxed font-medium drop-shadow">
+        <p className="text-lg sm:text-xl text-white/90 max-w-2xl mx-auto mb-4 leading-relaxed font-medium"
+          style={{ textShadow: "0 2px 12px rgba(4,18,32,0.8)" }}>
           Where DevOps, Platform Engineering, Cloud, AI and engineering
           leadership meet.
         </p>
-        <p className="text-base text-slate-400 max-w-xl mx-auto mb-10 drop-shadow">
+        <p className="text-base text-white/70 max-w-xl mx-auto mb-10"
+          style={{ textShadow: "0 2px 10px rgba(4,18,32,0.9)" }}>
           A community-driven tech event is taking shape in Miami. Be the first
           to know about speakers, sponsorship opportunities, CFP and ticket launch.
         </p>

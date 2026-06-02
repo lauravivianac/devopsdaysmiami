@@ -1,352 +1,395 @@
 export default function HeroBg() {
   return (
     <div className="absolute inset-0 overflow-hidden">
-      {/* ── Sky gradient ── */}
       <svg
         className="absolute inset-0 w-full h-full"
-        viewBox="0 0 1440 800"
+        viewBox="0 0 1440 900"
         preserveAspectRatio="xMidYMid slice"
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
-          {/* Sky */}
+          {/* ── Sky ── */}
           <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%"   stopColor="#020d1b" />
-            <stop offset="40%"  stopColor="#031B2E" />
-            <stop offset="70%"  stopColor="#0a3050" />
-            <stop offset="85%"  stopColor="#1a4a6e" />
-            <stop offset="92%"  stopColor="#c25a30" stopOpacity="0.7" />
-            <stop offset="97%"  stopColor="#FF6F61" stopOpacity="0.4" />
-            <stop offset="100%" stopColor="#FFD18A" stopOpacity="0.2" />
+            <stop offset="0%"   stopColor="#0a2a3a" />
+            <stop offset="25%"  stopColor="#0d3d50" />
+            <stop offset="52%"  stopColor="#1a6070" />
+            <stop offset="68%"  stopColor="#c05020" stopOpacity="0.85" />
+            <stop offset="78%"  stopColor="#e8703a" stopOpacity="0.9" />
+            <stop offset="86%"  stopColor="#f4a050" />
+            <stop offset="92%"  stopColor="#f9c878" />
+            <stop offset="100%" stopColor="#fbd98a" />
           </linearGradient>
-          {/* Sun glow */}
-          <radialGradient id="sunGlow" cx="72%" cy="62%" r="25%">
-            <stop offset="0%"  stopColor="#FFD18A" stopOpacity="0.9" />
-            <stop offset="30%" stopColor="#FF9A4D" stopOpacity="0.5" />
-            <stop offset="60%" stopColor="#FF6F61" stopOpacity="0.2" />
+
+          {/* Sun radial */}
+          <radialGradient id="sun" cx="58%" cy="58%" r="12%">
+            <stop offset="0%"   stopColor="#fff8e0" />
+            <stop offset="18%"  stopColor="#fde68a" />
+            <stop offset="45%"  stopColor="#fb923c" stopOpacity="0.7" />
+            <stop offset="75%"  stopColor="#f97316" stopOpacity="0.2" />
             <stop offset="100%" stopColor="transparent" stopOpacity="0" />
           </radialGradient>
-          {/* Ocean */}
+
+          {/* Sun halo bloom */}
+          <radialGradient id="sunBloom" cx="58%" cy="58%" r="35%">
+            <stop offset="0%"   stopColor="#fde68a" stopOpacity="0.55" />
+            <stop offset="30%"  stopColor="#fb923c" stopOpacity="0.25" />
+            <stop offset="60%"  stopColor="#f97316" stopOpacity="0.08" />
+            <stop offset="100%" stopColor="transparent" stopOpacity="0" />
+          </radialGradient>
+
+          {/* Ocean body */}
           <linearGradient id="ocean" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%"  stopColor="#004e7c" />
-            <stop offset="50%" stopColor="#003660" />
-            <stop offset="100%" stopColor="#021628" />
+            <stop offset="0%"   stopColor="#1a7090" />
+            <stop offset="40%"  stopColor="#0d5570" />
+            <stop offset="100%" stopColor="#093a52" />
           </linearGradient>
-          {/* Ocean shimmer */}
-          <linearGradient id="shimmer" x1="0.3" y1="0" x2="0.7" y2="0">
-            <stop offset="0%"   stopColor="transparent" />
-            <stop offset="40%"  stopColor="#00D5E8" stopOpacity="0.15" />
-            <stop offset="60%"  stopColor="#FFD18A" stopOpacity="0.18" />
-            <stop offset="100%" stopColor="transparent" />
+
+          {/* Shallow bay – turquoise near beach */}
+          <linearGradient id="bay" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"   stopColor="#20a0b8" stopOpacity="0.9" />
+            <stop offset="60%"  stopColor="#26b8cc" stopOpacity="0.8" />
+            <stop offset="100%" stopColor="#40d0d8" stopOpacity="0.7" />
           </linearGradient>
-          {/* Circuit fade */}
-          <linearGradient id="circuitFade" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%"   stopColor="#00D5E8" stopOpacity="0.6" />
+
+          {/* Sand */}
+          <linearGradient id="sand" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"   stopColor="#d4956a" />
+            <stop offset="25%"  stopColor="#e8b080" />
+            <stop offset="60%"  stopColor="#f0c898" />
+            <stop offset="100%" stopColor="#f8deb8" />
+          </linearGradient>
+
+          {/* Wet sand at waterline */}
+          <linearGradient id="wetSand" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"   stopColor="#b8845c" stopOpacity="0.8" />
+            <stop offset="100%" stopColor="#c89870" stopOpacity="0.6" />
+          </linearGradient>
+
+          {/* Sun reflection on ocean */}
+          <linearGradient id="sunReflect" x1="0.3" y1="0" x2="0.7" y2="1">
+            <stop offset="0%"   stopColor="#fde68a" stopOpacity="0.5" />
+            <stop offset="40%"  stopColor="#fb923c" stopOpacity="0.3" />
+            <stop offset="100%" stopColor="#fde68a" stopOpacity="0.05" />
+          </linearGradient>
+
+          {/* Sky haze at horizon */}
+          <linearGradient id="haze" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"   stopColor="#f97316" stopOpacity="0" />
+            <stop offset="50%"  stopColor="#fbd98a" stopOpacity="0.18" />
+            <stop offset="100%" stopColor="#fbd98a" stopOpacity="0" />
+          </linearGradient>
+
+          {/* Dark content overlay */}
+          <radialGradient id="contentShield" cx="50%" cy="42%" r="48%">
+            <stop offset="0%"   stopColor="#041220" stopOpacity="0.62" />
+            <stop offset="70%"  stopColor="#041220" stopOpacity="0.30" />
+            <stop offset="100%" stopColor="#041220" stopOpacity="0" />
+          </radialGradient>
+
+          {/* Circuit line fade */}
+          <linearGradient id="cktL" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%"   stopColor="#00D5E8" stopOpacity="0.5" />
             <stop offset="100%" stopColor="#00D5E8" stopOpacity="0" />
           </linearGradient>
-          <linearGradient id="circuitFadeR" x1="1" y1="0" x2="0" y2="0">
-            <stop offset="0%"   stopColor="#00D5E8" stopOpacity="0.6" />
+          <linearGradient id="cktR" x1="1" y1="0" x2="0" y2="0">
+            <stop offset="0%"   stopColor="#00D5E8" stopOpacity="0.5" />
             <stop offset="100%" stopColor="#00D5E8" stopOpacity="0" />
           </linearGradient>
-          <filter id="blur4">
-            <feGaussianBlur stdDeviation="4" />
-          </filter>
-          <filter id="blur12">
-            <feGaussianBlur stdDeviation="12" />
-          </filter>
-          <filter id="blur2">
-            <feGaussianBlur stdDeviation="2" />
-          </filter>
+
+          {/* Filters */}
+          <filter id="blur6"><feGaussianBlur stdDeviation="6" /></filter>
+          <filter id="blur14"><feGaussianBlur stdDeviation="14" /></filter>
+          <filter id="blur3"><feGaussianBlur stdDeviation="3" /></filter>
+          <filter id="blur1"><feGaussianBlur stdDeviation="1" /></filter>
         </defs>
 
-        {/* Sky fill */}
-        <rect width="1440" height="800" fill="url(#sky)" />
+        {/* ══ SKY ══════════════════════════════════════════════════════════ */}
+        <rect width="1440" height="900" fill="url(#sky)" />
 
-        {/* Ambient sun glow blob */}
-        <ellipse cx="1040" cy="510" rx="280" ry="180" fill="url(#sunGlow)" filter="url(#blur12)" />
+        {/* Atmospheric haze band at horizon */}
+        <rect x="0" y="380" width="1440" height="180" fill="url(#haze)" filter="url(#blur14)" />
 
-        {/* Stars / subtle dots upper sky */}
-        {[
-          [120,60],[200,90],[340,40],[480,70],[580,30],[650,80],[800,50],[920,75],
-          [1050,35],[1150,65],[1280,45],[1380,90],[90,120],[260,130],[420,110],
-          [700,100],[1000,120],[1300,105],[1420,55],
-        ].map(([x,y], i) => (
-          <circle key={i} cx={x} cy={y} r="1" fill="white" opacity={0.3 + (i % 3) * 0.15} />
-        ))}
+        {/* Sun bloom */}
+        <rect x="0" y="0" width="1440" height="900" fill="url(#sunBloom)" />
 
-        {/* ── Sun disc ── */}
-        <circle cx="1040" cy="508" r="52" fill="#FFD18A" opacity="0.9" />
-        <circle cx="1040" cy="508" r="44" fill="#FFE0A0" opacity="0.95" />
-        {/* Horizontal reflection streak */}
-        <rect x="600" y="506" width="840" height="4" rx="2" fill="#FFD18A" opacity="0.2" filter="url(#blur4)" />
+        {/* Sun disc */}
+        <circle cx="836" cy="522" r="66" fill="url(#sun)" filter="url(#blur1)" />
+        <circle cx="836" cy="522" r="52" fill="#fff7d4" opacity="0.92" />
+        <circle cx="836" cy="522" r="38" fill="#fffae8" opacity="0.98" />
 
-        {/* ── Circuit lines – LEFT panel ── */}
-        <g opacity="0.22" stroke="url(#circuitFade)" strokeWidth="1" fill="none">
-          <path d="M0 200 H120 V260 H80 V320" />
-          <path d="M0 280 H60 V340 H140 V300 H200" />
-          <path d="M0 350 H100 V390" />
-          <path d="M30 390 H90 V430 H50" />
-          <circle cx="120" cy="260" r="3" fill="#00D5E8" stroke="none" opacity="0.8"/>
-          <circle cx="80"  cy="320" r="2" fill="#00D5E8" stroke="none" opacity="0.6"/>
-          <circle cx="140" cy="340" r="3" fill="#00D5E8" stroke="none" opacity="0.8"/>
-          <circle cx="200" cy="300" r="2" fill="#00D5E8" stroke="none" opacity="0.6"/>
-          <circle cx="100" cy="390" r="2" fill="#00D5E8" stroke="none" opacity="0.5"/>
+        {/* Horizontal light streak */}
+        <rect x="0" y="520" width="1440" height="6" fill="#fde68a" opacity="0.12" filter="url(#blur6)" />
+
+        {/* Fine clouds */}
+        <g opacity="0.22" fill="#fbd98a" filter="url(#blur6)">
+          <ellipse cx="240"  cy="220" rx="180" ry="22" />
+          <ellipse cx="480"  cy="180" rx="140" ry="16" />
+          <ellipse cx="1050" cy="200" rx="160" ry="18" />
+          <ellipse cx="1280" cy="240" rx="120" ry="14" />
+          <ellipse cx="900"  cy="160" rx="100" ry="12" />
+          <ellipse cx="150"  cy="310" rx="100" ry="10" />
+          <ellipse cx="1350" cy="300" rx="90"  ry="10" />
         </g>
-        {/* Circuit lines – RIGHT panel */}
-        <g opacity="0.22" stroke="url(#circuitFadeR)" strokeWidth="1" fill="none">
-          <path d="M1440 220 H1320 V280 H1360 V340" />
-          <path d="M1440 300 H1380 V360 H1280 V310 H1220" />
-          <path d="M1440 380 H1340 V420" />
-          <path d="M1410 420 H1350 V460 H1390" />
-          <circle cx="1320" cy="280" r="3" fill="#00D5E8" stroke="none" opacity="0.8"/>
-          <circle cx="1360" cy="340" r="2" fill="#00D5E8" stroke="none" opacity="0.6"/>
-          <circle cx="1280" cy="360" r="3" fill="#00D5E8" stroke="none" opacity="0.8"/>
-          <circle cx="1220" cy="310" r="2" fill="#00D5E8" stroke="none" opacity="0.6"/>
+        {/* Warm cloud undersides */}
+        <g opacity="0.12" fill="#fb923c" filter="url(#blur6)">
+          <ellipse cx="240"  cy="232" rx="170" ry="14" />
+          <ellipse cx="1050" cy="212" rx="150" ry="12" />
         </g>
 
-        {/* ── Miami Skyline – Brickell / Downtown ── */}
-        {/* Rendered in 3 layers: far bg (blurred), mid, near */}
-
-        {/* Far background towers – very muted */}
-        <g opacity="0.18" fill="#6aaed4" filter="url(#blur4)">
-          {/* Scattered towers far left */}
-          <rect x="50"  y="380" width="18" height="140" />
-          <rect x="75"  y="360" width="14" height="160" />
-          <rect x="96"  y="370" width="20" height="150" />
-          {/* Mid far */}
-          <rect x="580" y="330" width="22" height="190" />
-          <rect x="608" y="310" width="18" height="210" />
-          <rect x="632" y="345" width="26" height="175" />
-          <rect x="664" y="325" width="18" height="195" />
-          {/* Far right */}
-          <rect x="1300" y="360" width="18" height="160" />
-          <rect x="1325" y="340" width="22" height="180" />
-          <rect x="1354" y="355" width="16" height="165" />
-          <rect x="1378" y="348" width="20" height="172" />
+        {/* ══ MIAMI SKYLINE ════════════════════════════════════════════════ */}
+        {/* Far buildings – atmospheric, muted blue-grey */}
+        <g opacity="0.28" fill="#4a8aaa" filter="url(#blur6)">
+          <rect x="80"  y="340" width="20" height="190" />
+          <rect x="106" y="310" width="16" height="220" />
+          <rect x="128" y="330" width="24" height="200" />
+          <rect x="900" y="360" width="18" height="170" />
+          <rect x="924" y="335" width="22" height="195" />
+          <rect x="952" y="350" width="16" height="180" />
         </g>
 
-        {/* ── MID skyline – main Miami buildings ── */}
-        <g fill="#0c3050" opacity="0.85">
-          {/* === LEFT CLUSTER — Edgewater / Wynwood area === */}
-          <rect x="30"  y="430" width="28" height="95" />
-          <rect x="64"  y="400" width="22" height="125" />
-          {/* small antenna */}
-          <rect x="73"  y="390" width="4"  height="12" />
-          <rect x="90"  y="415" width="30" height="110" />
-          <rect x="126" y="395" width="26" height="130" />
-          <rect x="126" y="388" width="8"  height="9" />
-          <rect x="157" y="440" width="24" height="85" />
-          <rect x="185" y="420" width="32" height="105" />
-          <rect x="222" y="400" width="24" height="125" />
-          {/* stepped top */}
-          <rect x="250" y="390" width="40" height="135" />
-          <rect x="254" y="378" width="32" height="14" />
-          <rect x="258" y="368" width="24" height="12" />
-          <rect x="293" y="410" width="28" height="115" />
-          <rect x="325" y="430" width="20" height="95" />
+        {/* Mid skyline – main Brickell silhouette, warm teal-grey */}
+        <g fill="#1a4a5e" opacity="0.82">
+          {/* Left cluster */}
+          <rect x="50"  y="430" width="26" height="100" />
+          <rect x="80"  y="400" width="20" height="130" />
+          <rect x="84"  y="390" width="4"  height="12" />  {/* antenna */}
+          <rect x="105" y="415" width="28" height="115" />
+          <rect x="138" y="395" width="22" height="135" />
+          <rect x="142" y="382" width="6"  height="15" />
+          <rect x="164" y="435" width="22" height="95" />
+          <rect x="190" y="410" width="30" height="120" />
+          <rect x="224" y="390" width="22" height="140" />
+          <rect x="250" y="375" width="38" height="155" />
+          <rect x="254" y="362" width="30" height="15" />
+          <rect x="258" y="348" width="22" height="16" />
+          <rect x="292" y="405" width="26" height="125" />
+          <rect x="322" y="430" width="20" height="100" />
 
-          {/* === CENTER – iconic Brickell silhouette === */}
-          {/* Four Seasons / 1450 Brickell style: very tall stepped */}
-          <rect x="580" y="260" width="36" height="265" />
-          <rect x="584" y="248" width="28" height="14" />
-          <rect x="588" y="236" width="20" height="14" />
-          <rect x="592" y="224" width="12" height="14" />
-          <rect x="595" y="214" width="6"  height="12" />  {/* antenna */}
-          {/* 1000 Museum style bulge */}
-          <rect x="620" y="300" width="34" height="225" />
-          <ellipse cx="637" cy="300" rx="17" ry="10" />
-          {/* Brickell City Centre */}
-          <rect x="658" y="320" width="42" height="205" />
-          <rect x="662" y="310" width="34" height="12" />
-          <rect x="666" y="298" width="26" height="14" />
-          {/* SLS Brickell style */}
-          <rect x="704" y="335" width="30" height="190" />
-          <rect x="707" y="324" width="24" height="13" />
-          {/* JW Marriott Marquis style – two towers */}
-          <rect x="738" y="310" width="24" height="215" />
-          <rect x="766" y="295" width="28" height="230" />
-          <rect x="769" y="284" width="22" height="13" />
-          <rect x="773" y="272" width="14" height="14" />
-          <rect x="776" y="262" width="8"  height="12" />
-          {/* Panorama Tower – tallest in Miami */}
-          <rect x="798" y="240" width="38" height="285" />
-          <rect x="802" y="228" width="30" height="14" />
-          <rect x="806" y="216" width="22" height="14" />
-          <rect x="810" y="204" width="14" height="14" />
-          <rect x="813" y="192" width="8"  height="14" />
-          <rect x="815" y="180" width="4"  height="14" />  {/* spire */}
-          {/* Adjacent towers */}
-          <rect x="840" y="285" width="32" height="240" />
-          <rect x="876" y="300" width="28" height="225" />
-          <rect x="908" y="320" width="36" height="205" />
-          <rect x="912" y="308" width="28" height="14" />
-          {/* Icon Brickell style – 3 towers */}
-          <rect x="948" y="285" width="26" height="240" />
-          <rect x="978" y="270" width="30" height="255" />
-          <rect x="982" y="256" width="22" height="16" />
-          <rect x="986" y="242" width="14" height="16" />
-          <rect x="1012" y="290" width="26" height="235" />
+          {/* Center – Brickell towers */}
+          <rect x="560" y="255" width="34" height="275" />
+          <rect x="564" y="242" width="26" height="15" />
+          <rect x="568" y="228" width="18" height="16" />
+          <rect x="572" y="215" width="10" height="15" />
+          <rect x="575" y="204" width="4"  height="13" />
+          <rect x="598" y="295" width="32" height="235" />
+          <ellipse cx="614" cy="295" rx="16" ry="9" />
+          <rect x="634" y="315" width="40" height="215" />
+          <rect x="638" y="304" width="32" height="13" />
+          <rect x="642" y="290" width="24" height="16" />
+          <rect x="678" y="330" width="28" height="200" />
+          <rect x="681" y="318" width="22" height="14" />
+          {/* Twin towers */}
+          <rect x="710" y="305" width="22" height="225" />
+          <rect x="736" y="290" width="26" height="240" />
+          <rect x="739" y="278" width="20" height="14" />
+          <rect x="743" y="265" width="12" height="15" />
+          <rect x="746" y="252" width="6"  height="15" />
+          {/* Panorama – tallest */}
+          <rect x="766" y="232" width="36" height="298" />
+          <rect x="770" y="220" width="28" height="14" />
+          <rect x="774" y="207" width="20" height="15" />
+          <rect x="778" y="194" width="12" height="15" />
+          <rect x="781" y="182" width="6"  height="14" />
+          <rect x="783" y="169" width="2"  height="15" />
+          <rect x="806" y="278" width="30" height="252" />
+          <rect x="840" y="295" width="26" height="235" />
+          <rect x="870" y="315" width="34" height="215" />
+          <rect x="874" y="302" width="26" height="15" />
+          {/* Icon style */}
+          <rect x="908" y="282" width="24" height="248" />
+          <rect x="936" y="268" width="28" height="262" />
+          <rect x="940" y="254" width="20" height="16" />
+          <rect x="944" y="240" width="12" height="16" />
+          <rect x="968" y="286" width="24" height="244" />
 
-          {/* === RIGHT CLUSTER – Coconut Grove / Key Biscayne feel === */}
-          <rect x="1090" y="390" width="28" height="135" />
-          <rect x="1122" y="370" width="34" height="155" />
-          <rect x="1126" y="358" width="26" height="14" />
-          <rect x="1160" y="385" width="24" height="140" />
-          <rect x="1188" y="400" width="30" height="125" />
-          <rect x="1222" y="380" width="26" height="145" />
-          <rect x="1252" y="410" width="22" height="115" />
-          <rect x="1278" y="430" width="20" height="95" />
-          <rect x="1302" y="415" width="28" height="110" />
-          <rect x="1334" y="435" width="18" height="90" />
-          <rect x="1356" y="425" width="24" height="100" />
-          <rect x="1384" y="440" width="20" height="85" />
-          <rect x="1408" y="430" width="32" height="95" />
+          {/* Right cluster */}
+          <rect x="1040" y="390" width="26" height="140" />
+          <rect x="1070" y="368" width="32" height="162" />
+          <rect x="1074" y="354" width="24" height="16" />
+          <rect x="1106" y="382" width="22" height="148" />
+          <rect x="1132" y="400" width="28" height="130" />
+          <rect x="1164" y="378" width="24" height="152" />
+          <rect x="1192" y="408" width="20" height="122" />
+          <rect x="1216" y="432" width="18" height="98" />
+          <rect x="1238" y="416" width="26" height="114" />
+          <rect x="1268" y="440" width="16" height="90" />
+          <rect x="1288" y="428" width="22" height="102" />
         </g>
 
-        {/* ── NEAR skyline – darker silhouette overlay ── */}
-        <g fill="#041622" opacity="0.6">
-          <rect x="0"    y="490" width="80"  height="140" />
-          <rect x="240"  y="470" width="60"  height="160" />
-          <rect x="300"  y="480" width="50"  height="150" />
-          <rect x="350"  y="460" width="40"  height="170" />
-          <rect x="1040" y="480" width="55"  height="150" />
-          <rect x="1095" y="468" width="45"  height="162" />
-          <rect x="1390" y="475" width="50"  height="155" />
+        {/* Near silhouette layer – darkest, no blur */}
+        <g fill="#0d2e3e" opacity="0.7">
+          <rect x="0"   y="498" width="70"  height="140" />
+          <rect x="220" y="480" width="55"  height="158" />
+          <rect x="275" y="492" width="48"  height="146" />
+          <rect x="323" y="472" width="38"  height="166" />
+          <rect x="990" y="488" width="50"  height="150" />
+          <rect x="1040" y="478" width="42" height="160" />
+          <rect x="1300" y="490" width="45" height="148" />
+          <rect x="1345" y="480" width="38" height="158" />
+          <rect x="1383" y="492" width="57" height="146" />
         </g>
 
-        {/* Building windows / lights – warm glow */}
-        <g opacity="0.35" fill="#FFD18A">
+        {/* Building window lights – warm */}
+        <g fill="#fde68a" opacity="0.4">
           {[
-            [590,270,4,3],[610,290,4,3],[630,310,4,3],[590,300,4,3],[610,320,4,3],
-            [800,250,5,4],[820,270,5,4],[840,290,5,4],[800,280,5,4],[820,300,5,4],
-            [765,300,4,3],[770,320,4,3],[750,310,4,3],
-            [950,295,4,3],[965,310,4,3],[980,275,4,3],[995,290,4,3],
-            [660,335,4,3],[680,350,4,3],[700,330,4,3],
-            [910,325,4,3],[930,340,4,3],[940,310,4,3],
-          ].map(([x,y,w,h], i) => (
+            [568,265,4,3],[580,282,4,3],[592,298,4,3],[568,295,4,3],[580,312,4,3],
+            [770,242,5,3],[780,260,5,3],[790,278,5,3],[770,270,5,3],[780,288,5,3],
+            [740,298,4,3],[742,315,4,3],[736,308,4,3],
+            [912,292,4,3],[924,308,4,3],[940,276,4,3],[952,292,4,3],
+            [638,330,4,3],[656,345,4,3],[674,332,4,3],
+            [874,322,4,3],[898,338,4,3],[910,312,4,3],
+            [1074,375,4,3],[1088,390,4,3],[1104,372,4,3],
+          ].map(([x,y,w,h],i) => (
             <rect key={i} x={x} y={y} width={w} height={h} rx="1" />
           ))}
         </g>
-        {/* Cyan accent windows */}
-        <g opacity="0.2" fill="#00D5E8">
+        {/* Cyan accent lights */}
+        <g fill="#00D5E8" opacity="0.18">
           {[
-            [600,280,4,2],[620,300,4,2],[640,320,4,2],
-            [808,255,4,2],[812,275,4,2],[816,295,4,2],
-            [958,300,4,2],[968,315,4,2],[988,280,4,2],
-          ].map(([x,y,w,h], i) => (
+            [575,275,4,2],[586,292,4,2],[775,250,4,2],[785,268,4,2],
+            [920,298,4,2],[936,282,4,2],[1080,380,4,2],
+          ].map(([x,y,w,h],i) => (
             <rect key={i} x={x} y={y} width={w} height={h} rx="1" />
           ))}
         </g>
 
-        {/* ── Horizon glow line ── */}
-        <rect x="0" y="519" width="1440" height="3" fill="#FF9A4D" opacity="0.25" filter="url(#blur4)" />
+        {/* ══ HORIZON WATER / BAY ══════════════════════════════════════════ */}
+        <rect x="0" y="528" width="1440" height="80" fill="url(#ocean)" />
 
-        {/* ── Palm trees – LEFT ── */}
-        <g opacity="0.85">
-          {/* Left palm trunk */}
-          <path d="M138 800 Q142 720 148 660 Q152 630 158 610" stroke="#0a2535" strokeWidth="10" fill="none" strokeLinecap="round"/>
-          {/* Left fronds */}
-          <path d="M158 610 Q120 580 90 560 Q110 565 118 572 Q100 555 82 548" stroke="#0d3040" strokeWidth="6" fill="none" strokeLinecap="round" opacity="0.9"/>
-          <path d="M158 610 Q145 570 135 540 Q140 548 148 555 Q138 535 130 520" stroke="#0d3040" strokeWidth="6" fill="none" strokeLinecap="round" opacity="0.9"/>
-          <path d="M158 610 Q170 565 178 535 Q174 544 172 552 Q182 530 188 515" stroke="#0d3040" strokeWidth="6" fill="none" strokeLinecap="round" opacity="0.85"/>
-          <path d="M158 610 Q185 580 205 562 Q195 570 196 578 Q210 558 218 548" stroke="#0d3040" strokeWidth="6" fill="none" strokeLinecap="round" opacity="0.8"/>
-          <path d="M158 610 Q155 585 150 565 Q153 572 156 580" stroke="#0d3040" strokeWidth="5" fill="none" strokeLinecap="round" opacity="0.7"/>
-          {/* Second left palm */}
-          <path d="M58 800 Q62 740 70 680 Q76 645 85 620" stroke="#08202e" strokeWidth="8" fill="none" strokeLinecap="round"/>
-          <path d="M85 620 Q55 592 30 576 Q48 582 52 590 Q36 570 24 562" stroke="#0a2a38" strokeWidth="5" fill="none" strokeLinecap="round" opacity="0.8"/>
-          <path d="M85 620 Q72 585 68 558 Q72 565 78 572 Q72 550 68 536" stroke="#0a2a38" strokeWidth="5" fill="none" strokeLinecap="round" opacity="0.8"/>
-          <path d="M85 620 Q100 585 110 562 Q104 570 105 578 Q115 556 120 540" stroke="#0a2a38" strokeWidth="5" fill="none" strokeLinecap="round" opacity="0.75"/>
-          <path d="M85 620 Q108 594 124 580 Q116 585 118 592 Q128 574 134 564" stroke="#0a2a38" strokeWidth="5" fill="none" strokeLinecap="round" opacity="0.7"/>
+        {/* Sun reflection path on water */}
+        <path
+          d="M680 530 Q836 510 990 530 L1010 608 Q836 580 662 608 Z"
+          fill="url(#sunReflect)"
+          filter="url(#blur3)"
+          opacity="0.7"
+        />
+
+        {/* Horizon glow line */}
+        <rect x="0" y="525" width="1440" height="5" fill="#fbd98a" opacity="0.28" filter="url(#blur6)" />
+
+        {/* ══ TURQUOISE BAY / BISCAYNE ══════════════════════════════════════ */}
+        {/* Sweeping turquoise shallow water across center */}
+        <path
+          d="M0 580 C200 565 400 590 600 575 C800 560 1000 590 1200 572 C1320 562 1400 580 1440 575 L1440 680 C1200 665 900 680 600 668 C300 656 100 672 0 665 Z"
+          fill="url(#bay)"
+          opacity="0.88"
+        />
+
+        {/* Shallow surf shimmer */}
+        <path
+          d="M0 620 C180 608 360 625 540 614 C720 603 900 622 1080 612 C1260 602 1380 616 1440 610 L1440 638 C1200 625 900 638 600 630 C300 622 100 634 0 628 Z"
+          fill="#40d8e0"
+          opacity="0.35"
+        />
+
+        {/* Wave lines on bay */}
+        <g stroke="#a0eef5" strokeWidth="1.5" fill="none" opacity="0.22">
+          <path d="M100 595 Q300 588 500 595 Q700 602 900 593 Q1100 584 1300 595" />
+          <path d="M0  610 Q250 602 500 610 Q750 618 1000 608 Q1200 598 1440 610" />
+          <path d="M50  628 Q350 618 650 628 Q950 638 1250 626 Q1360 622 1440 628" />
         </g>
 
-        {/* ── Palm trees – RIGHT ── */}
-        <g opacity="0.85">
-          <path d="M1302 800 Q1298 720 1292 660 Q1288 630 1282 610" stroke="#0a2535" strokeWidth="10" fill="none" strokeLinecap="round"/>
-          <path d="M1282 610 Q1320 580 1350 560 Q1330 565 1322 572 Q1340 555 1358 548" stroke="#0d3040" strokeWidth="6" fill="none" strokeLinecap="round" opacity="0.9"/>
-          <path d="M1282 610 Q1295 570 1305 540 Q1300 548 1292 555 Q1302 535 1310 520" stroke="#0d3040" strokeWidth="6" fill="none" strokeLinecap="round" opacity="0.9"/>
-          <path d="M1282 610 Q1270 565 1262 535 Q1266 544 1268 552 Q1258 530 1252 515" stroke="#0d3040" strokeWidth="6" fill="none" strokeLinecap="round" opacity="0.85"/>
-          <path d="M1282 610 Q1255 580 1235 562 Q1245 570 1244 578 Q1230 558 1222 548" stroke="#0d3040" strokeWidth="6" fill="none" strokeLinecap="round" opacity="0.8"/>
-          {/* Second right palm */}
-          <path d="M1390 800 Q1386 735 1378 672 Q1372 638 1362 614" stroke="#08202e" strokeWidth="8" fill="none" strokeLinecap="round"/>
-          <path d="M1362 614 Q1395 588 1418 572 Q1402 578 1398 586 Q1412 566 1422 556" stroke="#0a2a38" strokeWidth="5" fill="none" strokeLinecap="round" opacity="0.8"/>
-          <path d="M1362 614 Q1348 580 1344 552 Q1348 560 1354 566 Q1348 544 1344 530" stroke="#0a2a38" strokeWidth="5" fill="none" strokeLinecap="round" opacity="0.8"/>
-          <path d="M1362 614 Q1342 588 1328 574 Q1336 579 1334 586 Q1324 568 1318 558" stroke="#0a2a38" strokeWidth="5" fill="none" strokeLinecap="round" opacity="0.75"/>
+        {/* ══ BEACH SAND ═══════════════════════════════════════════════════ */}
+        {/* Main sand body */}
+        <path
+          d="M0 665 C200 650 500 672 800 658 C1100 644 1300 662 1440 652 L1440 900 L0 900 Z"
+          fill="url(#sand)"
+        />
+
+        {/* Wet sand at waterline */}
+        <path
+          d="M0 665 C200 650 500 672 800 658 C1100 644 1300 662 1440 652 L1440 695 C1200 684 900 698 600 688 C300 678 100 690 0 682 Z"
+          fill="url(#wetSand)"
+          opacity="0.75"
+        />
+
+        {/* Sand texture ripples */}
+        <g stroke="#c8906a" strokeWidth="0.8" fill="none" opacity="0.15">
+          <path d="M100 720 Q400 710 700 722 Q1000 734 1300 718" />
+          <path d="M50  760 Q350 748 650 762 Q950 776 1250 758" />
+          <path d="M0   800 Q300 788 600 802 Q900 816 1200 798 Q1350 790 1440 800" />
+          <path d="M150 840 Q450 828 750 842 Q1050 856 1350 836" />
         </g>
 
-        {/* ── Ocean ── */}
-        {/* Base ocean body */}
-        <rect x="0" y="522" width="1440" height="278" fill="url(#ocean)" />
-
-        {/* Sun reflection on water */}
-        <ellipse cx="1040" cy="525" rx="180" ry="18" fill="url(#shimmer)" filter="url(#blur2)" />
-
-        {/* Wave 1 – far */}
+        {/* Foam edge at waterline */}
         <path
-          d="M0 535 C120 528 200 542 320 535 C440 528 560 545 680 535 C800 525 920 542 1040 535 C1160 528 1280 542 1440 533 L1440 550 L0 550 Z"
-          fill="#005a8e" opacity="0.6"
-        />
-        {/* Wave 2 */}
-        <path
-          d="M0 555 C100 546 240 563 380 554 C520 545 640 562 760 554 C880 546 1020 564 1140 554 C1260 545 1360 560 1440 553 L1440 575 L0 575 Z"
-          fill="#004070" opacity="0.7"
-        />
-        {/* Wave whitecaps */}
-        <path
-          d="M0 555 C80 551 140 558 200 554 C300 549 400 557 500 553"
-          stroke="white" strokeWidth="1.5" fill="none" opacity="0.12"
-        />
-        <path
-          d="M620 556 C720 550 820 558 940 554 C1020 550 1100 558 1200 554"
-          stroke="white" strokeWidth="1.5" fill="none" opacity="0.12"
-        />
-        {/* Wave 3 – near */}
-        <path
-          d="M0 578 C160 568 300 582 460 574 C620 566 780 582 920 574 C1060 566 1200 582 1440 572 L1440 598 L0 598 Z"
-          fill="#002f55" opacity="0.8"
-        />
-        {/* Foam lines on wave 3 */}
-        <path
-          d="M40 578 C100 574 180 581 260 577 C360 572 480 580 580 575"
-          stroke="white" strokeWidth="1" fill="none" opacity="0.18"
-        />
-        <path
-          d="M700 576 C820 571 940 580 1060 575 C1160 570 1280 578 1400 573"
-          stroke="white" strokeWidth="1" fill="none" opacity="0.18"
-        />
-        {/* Wave 4 – foreground */}
-        <path
-          d="M0 606 C200 594 400 610 600 600 C800 590 1000 608 1200 598 C1300 593 1380 604 1440 600 L1440 640 L0 640 Z"
-          fill="#001e3c" opacity="0.9"
-        />
-        {/* Wave 4 foam */}
-        <path
-          d="M0 606 C120 600 240 608 380 603 C500 598 640 607 760 602"
-          stroke="#00D5E8" strokeWidth="1.5" fill="none" opacity="0.2"
-        />
-        <path
-          d="M860 604 C980 598 1100 607 1220 602 C1320 598 1400 606 1440 603"
-          stroke="#00D5E8" strokeWidth="1.5" fill="none" opacity="0.2"
+          d="M0 666 C120 660 240 668 380 663 C520 658 660 668 800 661 C940 654 1080 665 1220 659 C1320 655 1400 664 1440 660"
+          stroke="white" strokeWidth="2" fill="none" opacity="0.35"
         />
 
-        {/* ── Bottom dark ocean floor ── */}
-        <rect x="0" y="640" width="1440" height="160" fill="#010e1c" />
-
-        {/* ── Subtle grid overlay on top of everything ── */}
-        <g opacity="0.04" stroke="#00D5E8" strokeWidth="0.5">
-          {[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23].map(i => (
-            <line key={`v${i}`} x1={i * 60} y1="0" x2={i * 60} y2="520" />
-          ))}
-          {[0,1,2,3,4,5,6,7,8].map(i => (
-            <line key={`h${i}`} x1="0" y1={i * 65} x2="1440" y2={i * 65} />
-          ))}
+        {/* ══ PALM TREES ════════════════════════════════════════════════════ */}
+        {/* Far-left palm – thinner, lighter */}
+        <g opacity="0.7" fill="none">
+          <path d="M68 900 Q74 820 82 755 Q88 715 96 690" stroke="#1a3828" strokeWidth="8" strokeLinecap="round"/>
+          <path d="M96 690 Q58 665 30 648 Q50 652 56 660 Q36 642 18 634" stroke="#1a3828" strokeWidth="5" strokeLinecap="round"/>
+          <path d="M96 690 Q80 654 74 626 Q78 634 84 642 Q78 620 72 604" stroke="#1a3828" strokeWidth="5" strokeLinecap="round"/>
+          <path d="M96 690 Q108 650 116 622 Q112 630 110 638 Q120 616 126 600" stroke="#1a3828" strokeWidth="5" strokeLinecap="round"/>
+          <path d="M96 690 Q120 662 138 646 Q128 652 128 660 Q140 642 148 632" stroke="#1a3828" strokeWidth="4" strokeLinecap="round"/>
+          {/* coconuts */}
+          <circle cx="96" cy="692" r="5" fill="#2a4a1a" opacity="0.8"/>
+          <circle cx="90" cy="698" r="4" fill="#2a4a1a" opacity="0.7"/>
         </g>
 
-        {/* ── Text readability overlay – center band ── */}
-        <radialGradient id="textBg" cx="50%" cy="50%" r="55%">
-          <stop offset="0%"   stopColor="#031B2E" stopOpacity="0.55" />
-          <stop offset="100%" stopColor="#031B2E" stopOpacity="0" />
-        </radialGradient>
-        <rect x="280" y="80" width="880" height="500" rx="40" fill="url(#textBg)" />
+        {/* Main left palm – tall, prominent */}
+        <g opacity="0.88" fill="none">
+          <path d="M152 900 Q160 800 172 720 Q180 668 192 638" stroke="#152e22" strokeWidth="14" strokeLinecap="round"/>
+          <path d="M152 900 Q155 860 158 820" stroke="#1a3828" strokeWidth="12" strokeLinecap="round" opacity="0.5"/>
+          {/* Fronds */}
+          <path d="M192 638 Q142 605 106 582 Q130 590 136 600 Q108 578 86 566" stroke="#1a3828" strokeWidth="8" strokeLinecap="round"/>
+          <path d="M192 638 Q170 596 160 565 Q165 575 172 582 Q162 558 156 540" stroke="#1a3828" strokeWidth="8" strokeLinecap="round"/>
+          <path d="M192 638 Q206 590 214 558 Q210 568 208 578 Q220 552 228 534" stroke="#1a3828" strokeWidth="8" strokeLinecap="round"/>
+          <path d="M192 638 Q222 610 248 590 Q236 598 236 608 Q252 588 262 576" stroke="#1a3828" strokeWidth="7" strokeLinecap="round"/>
+          <path d="M192 638 Q188 600 184 572 Q186 582 190 590" stroke="#1a3828" strokeWidth="6" strokeLinecap="round"/>
+          <path d="M192 638 Q168 618 152 608 Q160 610 162 618" stroke="#1a3828" strokeWidth="6" strokeLinecap="round"/>
+          <circle cx="192" cy="640" r="7" fill="#1e3c20" opacity="0.9"/>
+          <circle cx="182" cy="648" r="5" fill="#1e3c20" opacity="0.8"/>
+          <circle cx="200" cy="648" r="5" fill="#1e3c20" opacity="0.7"/>
+        </g>
+
+        {/* Far-right palm */}
+        <g opacity="0.7" fill="none">
+          <path d="M1372 900 Q1366 820 1358 755 Q1352 715 1344 690" stroke="#1a3828" strokeWidth="8" strokeLinecap="round"/>
+          <path d="M1344 690 Q1382 665 1410 648 Q1390 652 1384 660 Q1404 642 1422 634" stroke="#1a3828" strokeWidth="5" strokeLinecap="round"/>
+          <path d="M1344 690 Q1360 654 1366 626 Q1362 634 1356 642 Q1362 620 1368 604" stroke="#1a3828" strokeWidth="5" strokeLinecap="round"/>
+          <path d="M1344 690 Q1332 650 1324 622 Q1328 630 1330 638 Q1320 616 1314 600" stroke="#1a3828" strokeWidth="5" strokeLinecap="round"/>
+          <path d="M1344 690 Q1320 662 1302 646 Q1312 652 1312 660 Q1300 642 1292 632" stroke="#1a3828" strokeWidth="4" strokeLinecap="round"/>
+          <circle cx="1344" cy="692" r="5" fill="#2a4a1a" opacity="0.8"/>
+        </g>
+
+        {/* Main right palm */}
+        <g opacity="0.88" fill="none">
+          <path d="M1288 900 Q1280 800 1268 720 Q1260 668 1248 638" stroke="#152e22" strokeWidth="14" strokeLinecap="round"/>
+          <path d="M1248 638 Q1298 605 1334 582 Q1310 590 1304 600 Q1332 578 1354 566" stroke="#1a3828" strokeWidth="8" strokeLinecap="round"/>
+          <path d="M1248 638 Q1270 596 1280 565 Q1275 575 1268 582 Q1278 558 1284 540" stroke="#1a3828" strokeWidth="8" strokeLinecap="round"/>
+          <path d="M1248 638 Q1234 590 1226 558 Q1230 568 1232 578 Q1220 552 1212 534" stroke="#1a3828" strokeWidth="8" strokeLinecap="round"/>
+          <path d="M1248 638 Q1218 610 1192 590 Q1204 598 1204 608 Q1188 588 1178 576" stroke="#1a3828" strokeWidth="7" strokeLinecap="round"/>
+          <path d="M1248 638 Q1252 600 1256 572 Q1254 582 1250 590" stroke="#1a3828" strokeWidth="6" strokeLinecap="round"/>
+          <circle cx="1248" cy="640" r="7" fill="#1e3c20" opacity="0.9"/>
+          <circle cx="1258" cy="648" r="5" fill="#1e3c20" opacity="0.8"/>
+          <circle cx="1240" cy="648" r="5" fill="#1e3c20" opacity="0.7"/>
+        </g>
+
+        {/* ══ CIRCUIT LINES ════════════════════════════════════════════════ */}
+        <g opacity="0.18" stroke="url(#cktL)" strokeWidth="1" fill="none">
+          <path d="M0 180 H100 V240 H70 V300" />
+          <path d="M0 260 H50 V320 H120 V270 H180" />
+          <path d="M0 330 H90 V370" />
+          <circle cx="100" cy="240" r="3" fill="#00D5E8" stroke="none" opacity="0.7"/>
+          <circle cx="120" cy="320" r="2" fill="#00D5E8" stroke="none" opacity="0.5"/>
+        </g>
+        <g opacity="0.18" stroke="url(#cktR)" strokeWidth="1" fill="none">
+          <path d="M1440 200 H1340 V260 H1370 V320" />
+          <path d="M1440 280 H1390 V340 H1300 V290 H1240" />
+          <circle cx="1340" cy="260" r="3" fill="#00D5E8" stroke="none" opacity="0.7"/>
+          <circle cx="1300" cy="340" r="2" fill="#00D5E8" stroke="none" opacity="0.5"/>
+        </g>
+
+        {/* ══ CONTENT READABILITY SHIELD ════════════════════════════════════ */}
+        <rect width="1440" height="900" fill="url(#contentShield)" />
+
+        {/* Extra dark band behind text area */}
+        <rect x="200" y="90" width="1040" height="460" rx="60"
+          fill="#041220" opacity="0.22" filter="url(#blur14)" />
       </svg>
     </div>
   );
