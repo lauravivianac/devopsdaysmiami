@@ -14,8 +14,8 @@ export default function Hero() {
   return (
     <section className="relative min-h-screen flex flex-col justify-center overflow-hidden">
 
-      {/* ── Miami beach photograph — full cover, slight blur + dim ─────────────── */}
-      <div className="absolute inset-0" style={{ filter: "blur(1.5px) brightness(0.78)" }}>
+      {/* ── Miami beach photograph — bright, vibrant, warm ───────────────────── */}
+      <div className="absolute inset-0" style={{ filter: "brightness(1.18) saturate(1.15)" }}>
         <Image
           src="/miami-hero.png"
           alt="Miami Beach at sunset — turquoise ocean, white sand and Miami skyline"
@@ -27,12 +27,14 @@ export default function Hero() {
         />
       </div>
 
-      {/* ── Navy overlay — 38% — tones down image, keeps beach + skyline clear ── */}
-      <div className="absolute inset-0" style={{ background: "rgba(7,26,58,0.38)" }} />
+      {/* ── Very light white tint — no dark overlays ─────────────────────────── */}
+      <div className="absolute inset-0" style={{
+        background: "linear-gradient(180deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.04) 100%)"
+      }} />
 
-      {/* ── Soft radial dark gradient behind headline area only ───────────────── */}
+      {/* ── Large radial white glow — center — brightens behind logo + text ───── */}
       <div className="absolute inset-0 pointer-events-none" style={{
-        background: "radial-gradient(ellipse 70% 55% at 50% 48%, rgba(7,26,58,0.45) 0%, transparent 70%)"
+        background: "radial-gradient(circle at 50% 48%, rgba(255,255,255,0.75) 0%, rgba(255,255,255,0.45) 25%, rgba(255,255,255,0.15) 45%, rgba(255,255,255,0) 70%)"
       }} />
 
       {/* ── Bottom fade into the next section ─────────────────────────────────── */}
@@ -48,7 +50,7 @@ export default function Hero() {
             style={{
               width: 180, height: 180,
               background: "#ffffff",
-              boxShadow: "0 0 0 5px rgba(255,255,255,0.90), 0 0 0 10px rgba(255,255,255,0.35), 0 8px 48px rgba(7,26,58,0.40), 0 0 80px rgba(255,255,255,0.30)",
+              boxShadow: "0 0 60px rgba(255,255,255,0.45)",
             }}>
             <Image
               src="/logo.png"
@@ -80,7 +82,7 @@ export default function Hero() {
         {/* Headline */}
         <h1 className="fade-up-2 font-black tracking-tight leading-[0.95] mb-6"
           style={{ fontSize: "clamp(44px, 7.5vw, 88px)" }}>
-          <span style={{ color: "#071A3A", display: "block", textShadow: "0 2px 0 rgba(255,255,255,0.55), 0 4px 24px rgba(255,255,255,0.40)" }}>DevOpsDays is</span>
+          <span style={{ color: "#082B5C", display: "block", textShadow: "0 0 30px rgba(255,255,255,0.45)" }}>DevOpsDays is</span>
           <span className="grad-hero block mt-1">coming to Miami</span>
         </h1>
 
