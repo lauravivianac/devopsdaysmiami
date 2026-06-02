@@ -14,19 +14,26 @@ export default function Hero() {
   return (
     <section className="relative min-h-screen flex flex-col justify-center overflow-hidden">
 
-      {/* ── Miami beach photograph — full cover ──────────────────────────────── */}
-      <Image
-        src="/miami-hero.png"
-        alt="Miami Beach at sunset — turquoise ocean, white sand and Miami skyline"
-        fill
-        priority
-        quality={90}
-        className="object-cover object-center"
-        sizes="100vw"
-      />
+      {/* ── Miami beach photograph — full cover, slight blur + dim ─────────────── */}
+      <div className="absolute inset-0" style={{ filter: "blur(1.5px) brightness(0.78)" }}>
+        <Image
+          src="/miami-hero.png"
+          alt="Miami Beach at sunset — turquoise ocean, white sand and Miami skyline"
+          fill
+          priority
+          quality={90}
+          className="object-cover object-center"
+          sizes="100vw"
+        />
+      </div>
 
-      {/* ── Subtle navy overlay — 22% — beach and skyline stay fully visible ─── */}
-      <div className="absolute inset-0" style={{ background: "rgba(7,26,58,0.22)" }} />
+      {/* ── Navy overlay — 38% — tones down image, keeps beach + skyline clear ── */}
+      <div className="absolute inset-0" style={{ background: "rgba(7,26,58,0.38)" }} />
+
+      {/* ── Soft radial dark gradient behind headline area only ───────────────── */}
+      <div className="absolute inset-0 pointer-events-none" style={{
+        background: "radial-gradient(ellipse 70% 55% at 50% 48%, rgba(7,26,58,0.45) 0%, transparent 70%)"
+      }} />
 
       {/* ── Bottom fade into the next section ─────────────────────────────────── */}
       <div className="absolute bottom-0 inset-x-0 h-28 pointer-events-none"
@@ -40,8 +47,8 @@ export default function Hero() {
           <div className="mx-auto flex items-center justify-center rounded-full overflow-hidden"
             style={{
               width: 180, height: 180,
-              background: "rgba(255,255,255,0.92)",
-              boxShadow: "0 0 0 6px rgba(255,255,255,0.45), 0 8px 40px rgba(255,138,107,0.30), 0 0 60px rgba(37,208,230,0.18)",
+              background: "#ffffff",
+              boxShadow: "0 0 0 5px rgba(255,255,255,0.90), 0 0 0 10px rgba(255,255,255,0.35), 0 8px 48px rgba(7,26,58,0.40), 0 0 80px rgba(255,255,255,0.30)",
             }}>
             <Image
               src="/logo.png"
@@ -72,8 +79,8 @@ export default function Hero() {
 
         {/* Headline */}
         <h1 className="fade-up-2 font-black tracking-tight leading-[0.95] mb-6"
-          style={{ fontSize: "clamp(44px, 7.5vw, 88px)", textShadow: "0 2px 20px rgba(7,26,58,0.25)" }}>
-          <span style={{ color: "#071A3A", display: "block" }}>DevOpsDays is</span>
+          style={{ fontSize: "clamp(44px, 7.5vw, 88px)" }}>
+          <span style={{ color: "#071A3A", display: "block", textShadow: "0 2px 0 rgba(255,255,255,0.55), 0 4px 24px rgba(255,255,255,0.40)" }}>DevOpsDays is</span>
           <span className="grad-hero block mt-1">coming to Miami</span>
         </h1>
 
