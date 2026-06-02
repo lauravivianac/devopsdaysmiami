@@ -33,12 +33,23 @@ export default function Navbar() {
               The <Image> below will render it at 40×40px in the navbar.
               If you prefer SVG, change the src to "/logo.svg" and remove width/height.
             */}
-            <div className="w-10 h-10 relative">
+            {/*
+              mix-blend-mode: multiply removes the white background of the PNG
+              on the dark navy navbar — white pixels become transparent against
+              dark backgrounds. Replace with a transparent-bg PNG for best results.
+            */}
+            <div className="w-10 h-10 relative rounded-full overflow-hidden">
               <Image
                 src="/logo.png"
                 alt="DevOpsDays Miami"
                 fill
                 className="object-contain"
+                style={{ mixBlendMode: "multiply", filter: "brightness(1.15) contrast(1.1)" }}
+              />
+              {/* Navy wash layer — hides white bg on dark navbar */}
+              <div
+                className="absolute inset-0 rounded-full pointer-events-none"
+                style={{ mixBlendMode: "multiply", background: "#031B2E" }}
               />
             </div>
             <div className="leading-tight">
