@@ -1,66 +1,73 @@
 import Image from "next/image";
 
+const LINKS = [
+  { label: "About",    href: "#about"   },
+  { label: "Topics",   href: "#topics"  },
+  { label: "Miami",    href: "#miami"   },
+  { label: "Sponsors", href: "#sponsors"},
+  { label: "Waitlist", href: "#waitlist"},
+];
+
 export default function Footer() {
   return (
-    <footer className="bg-[#031B2E] relative overflow-hidden">
-      {/* Top wave */}
-      <svg className="w-full" viewBox="0 0 1440 50" preserveAspectRatio="none" fill="none">
-        <path d="M0 0 C480 50 960 0 1440 30 L1440 0 Z" fill="#FFF7EA" />
-      </svg>
+    <footer className="relative overflow-hidden" style={{ background: "#040f1c" }}>
+      <div className="section-divider absolute top-0 inset-x-0" />
 
-      {/* Circuit overlay */}
-      <div className="absolute inset-0 grid-circuit opacity-30" />
+      {/* Subtle bottom glow */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: "radial-gradient(ellipse 60% 40% at 50% 100%, rgba(0,200,224,0.05) 0%, transparent 70%)" }}
+      />
 
-      {/* Aqua line top */}
-      <div className="absolute top-12 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#00D5E8]/30 to-transparent" />
-
-      <div className="relative px-4 sm:px-6 lg:px-8 pt-12 pb-10 max-w-7xl mx-auto">
+      <div className="relative max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 py-14">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8 mb-10">
-          {/* Logo + tagline */}
-          <div className="flex flex-col items-center md:items-start gap-3">
-            {/*
-              LOGO: Reads from public/logo.png
-              Replace with your actual logo file at that path.
-            */}
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 relative">
-                <Image
-                  src="/logo.png"
-                  alt="DevOpsDays Miami"
-                  fill
-                  className="object-contain"
-                />
-              </div>
+
+          {/* Brand */}
+          <div className="flex items-center gap-3">
+            <div
+              className="w-10 h-10 relative rounded-full overflow-hidden"
+              style={{ background: "#040f1c", border: "1px solid rgba(0,200,224,0.15)" }}
+            >
+              <Image
+                src="/logo.png"
+                alt="DevOpsDays Miami"
+                fill
+                className="object-contain scale-90"
+                style={{ mixBlendMode: "multiply" }}
+              />
+              <div className="absolute inset-0 rounded-full" style={{ mixBlendMode: "multiply", background: "#040f1c" }} />
+            </div>
+            <div>
               <div>
-                <div className="flex items-baseline gap-1">
-                  <span className="text-[#00D5E8] font-black text-xl">DevOpsDays</span>
-                  <span className="text-[#FFD18A] font-black text-xl">Miami</span>
-                </div>
-                <p className="text-slate-500 text-xs">Community-driven. Engineering-focused. Coming soon.</p>
+                <span className="text-[#00c8e0] font-black text-base">DevOpsDays</span>
+                <span className="text-[#f5c842] font-black text-base"> Miami</span>
               </div>
+              <p className="text-slate-600 text-xs">Community-driven. Engineering-focused. Coming soon.</p>
             </div>
           </div>
 
           {/* Links */}
-          <div className="flex items-center gap-6 text-sm text-slate-400">
-            {[
-              ["About",    "#about"],
-              ["Topics",   "#topics"],
-              ["Miami",    "#miami"],
-              ["Sponsors", "#sponsors"],
-              ["Waitlist", "#waitlist"],
-            ].map(([label, href]) => (
-              <a key={label} href={href} className="hover:text-[#00D5E8] transition-colors">
+          <nav className="flex flex-wrap items-center justify-center gap-1">
+            {LINKS.map(({ label, href }) => (
+              <a
+                key={label}
+                href={href}
+                className="px-3 py-1.5 text-sm text-slate-500 hover:text-[#00c8e0] rounded-lg hover:bg-white/5 transition-all"
+              >
                 {label}
               </a>
             ))}
-          </div>
+          </nav>
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-white/5 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-600">
-          <span>© {new Date().getFullYear()} DevOpsDays Miami.</span>
-          <span>DevOpsDays is a trademark of the DevOpsDays community.</span>
+        <div className="border-t border-white/5 pt-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <p className="text-slate-700 text-xs">
+            © {new Date().getFullYear()} DevOpsDays Miami.
+          </p>
+          <p className="text-slate-700 text-xs">
+            DevOpsDays is a trademark of the DevOpsDays community.
+          </p>
         </div>
       </div>
     </footer>

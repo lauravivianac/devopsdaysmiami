@@ -3,14 +3,9 @@
 import { useSponsorModal } from "@/context/SponsorModalContext";
 import HeroBg from "./HeroBg";
 
-const badges = [
-  "Platform Engineering",
-  "Cloud Native",
-  "SRE",
-  "AI for Engineering",
-  "FinOps",
-  "DevOps Culture",
-  "Security",
+const BADGES = [
+  "Platform Engineering", "Cloud Native", "SRE & Reliability",
+  "AI for Engineering", "FinOps", "DevOps Culture", "Security",
 ];
 
 export default function Hero() {
@@ -20,60 +15,57 @@ export default function Hero() {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <HeroBg />
 
-      {/* Content */}
-      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-24 pb-40">
+      <div className="relative z-10 w-full max-w-4xl mx-auto px-5 sm:px-8 text-center pt-24 pb-48">
 
-        {/* Coming soon chip */}
-        <div className="inline-flex items-center gap-2 mb-7 px-4 py-2 rounded-full"
-          style={{ background: "rgba(0,213,232,0.12)", border: "1px solid rgba(0,213,232,0.35)" }}
-        >
-          <span className="w-2 h-2 rounded-full bg-[#00D5E8] animate-pulse" />
-          <span className="text-[#00D5E8] text-sm font-semibold tracking-widest uppercase">
-            Coming Soon · Miami, FL
-          </span>
+        {/* Event chip */}
+        <div className="inline-flex items-center gap-2.5 mb-8 px-4 py-1.5 rounded-full glass text-xs font-semibold tracking-widest uppercase text-[#00c8e0]">
+          <span className="w-1.5 h-1.5 rounded-full bg-[#00c8e0] animate-pulse" />
+          Coming Soon · Miami, FL
         </div>
 
         {/* Headline */}
-        <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.06] mb-5 drop-shadow-lg">
-          <span className="text-white">DevOpsDays is </span>
+        <h1 className="text-5xl sm:text-6xl lg:text-[72px] font-black tracking-tight leading-[1.05] mb-6">
+          <span className="text-white">DevOpsDays is</span>
           <br />
-          <span className="gradient-text-miami">coming to Miami</span>
+          <span className="text-gradient-hero">coming to Miami</span>
         </h1>
 
-        <p className="text-lg sm:text-xl text-white/90 max-w-2xl mx-auto mb-4 leading-relaxed font-medium"
-          style={{ textShadow: "0 2px 12px rgba(4,18,32,0.8)" }}>
+        {/* Sub-headline */}
+        <p
+          className="text-lg sm:text-xl text-slate-300 max-w-2xl mx-auto mb-3 leading-relaxed"
+          style={{ textShadow: "0 2px 16px rgba(4,15,28,0.9)" }}
+        >
           Where DevOps, Platform Engineering, Cloud, AI and engineering
           leadership meet.
         </p>
-        <p className="text-base text-white/70 max-w-xl mx-auto mb-10"
-          style={{ textShadow: "0 2px 10px rgba(4,18,32,0.9)" }}>
+        <p
+          className="text-sm sm:text-base text-slate-400 max-w-xl mx-auto mb-10 leading-relaxed"
+          style={{ textShadow: "0 2px 12px rgba(4,15,28,0.9)" }}
+        >
           A community-driven tech event is taking shape in Miami. Be the first
-          to know about speakers, sponsorship opportunities, CFP and ticket launch.
+          to know about speakers, CFP and ticket launch.
         </p>
 
         {/* CTAs */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
-          <a
-            href="#waitlist"
-            className="gradient-btn-primary text-white font-bold text-base px-9 py-4 rounded-full w-full sm:w-auto shadow-xl"
-          >
-            Join the waitlist →
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-12">
+          <a href="#waitlist" className="btn-primary px-8 py-4 text-base w-full sm:w-auto">
+            <span>Join the waitlist →</span>
           </a>
-          <button
-            onClick={openModal}
-            className="btn-outline-aqua font-semibold text-base px-9 py-4 rounded-full w-full sm:w-auto"
-          >
+          <button onClick={openModal} className="btn-ghost px-8 py-4 text-base w-full sm:w-auto">
             Become a sponsor
           </button>
         </div>
 
         {/* Topic badges */}
         <div className="flex flex-wrap items-center justify-center gap-2">
-          {badges.map((b) => (
+          {BADGES.map((b) => (
             <span
               key={b}
-              className="text-xs px-3 py-1.5 rounded-full font-semibold text-[#FFD18A]"
-              style={{ background: "rgba(255,209,138,0.12)", border: "1px solid rgba(255,209,138,0.25)" }}
+              className="text-xs px-3 py-1.5 rounded-full font-medium text-slate-300"
+              style={{
+                background: "rgba(255,255,255,0.05)",
+                border: "1px solid rgba(255,255,255,0.1)",
+              }}
             >
               {b}
             </span>
